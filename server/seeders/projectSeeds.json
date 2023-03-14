@@ -1,0 +1,43 @@
+[
+    { "id": "1",
+      "title": "project title",
+      "description": "Everyone knows that debugging is twice as hard as writing a program ",
+      "projectAuthor": "Brian Kernighan"
+    },
+    { "title": "project title",
+      "description": "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
+      "projectAuthor": "Max Kanat-Alexander"
+    },
+    { "title": "project title",
+      "description": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
+      "projectAuthor": "Why The Lucky Stiff"
+    },
+    { "title": "project title",
+      "description": "I'm not a great programmer; I'm just a good programmer with great habits.",
+      "projectAuthor": "Kent Beck"
+    },
+    { "title": "project title",
+      "description": "Walking on water and developing software from a specification are easy if both are frozen.",
+      "projectAuthor": "Edward V. Berard"
+    },
+    { "title": "project title",
+      "description": "The most disastrous thing that you can ever learn is your first programming language.",
+      "projectAuthor": "Alan Kay"
+    },
+    { "title": "project title",
+      "description": "The most important property of a program is whether it accomplishes the intention of its user.",
+      "projectAuthor": "C.A.R. Hoare"
+    },
+    { "title": "project title",
+      "description": "Delivering good software today is often better than perfect software tomorrow, so finish things and ship.",
+      "projectAuthor": "David Thomas"
+    },
+    { "title": "project title",
+      "description": "If you optimize everything, you will always be unhappy.",
+      "projectAuthor": "Donald Knuth"
+    },
+    { "title": "project title",
+      "description": "It's not a bug; it's an undocumented feature.",
+      "projectAuthor": "Lernantino"
+    }
+  ]
