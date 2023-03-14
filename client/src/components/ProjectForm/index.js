@@ -10,15 +10,15 @@ import Auth from '../../utils/auth';
 const ProjectForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-console.log("LINE 13")
+    console.log("LINE 13")
     // const [characterCount, setCharacterCount] = useState(0);
-console.log("LINE15")
+    console.log("LINE15")
     const [addProject, { error }] = useMutation(ADD_PROJECT, {
         update(cache, { data: { addProject } }) {
             console.log("LINE 18")
             try {
                 const { Projects } = cache.readQuery({ query: QUERY_PROJECT });
-console.log("LINE20")
+                console.log("LINE20")
                 cache.writeQuery({
                     query: QUERY_PROJECT,
                     data: { Projects: [addProject, ...Projects] },
@@ -47,9 +47,9 @@ console.log("LINE20")
                     title,
                     description,
                     projectAuthor: Auth.getProfile().data.username,
-                
+
                 },
-                
+
             });
 
             console.log(title)
@@ -78,45 +78,74 @@ console.log("LINE20")
 
     return (
         <div>
-            <h3>Add a Project</h3>
 
             {Auth.loggedIn() ? (
                 <>
-                    <form
-                        className="flex-row justify-center justify-space-between-md align-center"
-                        onSubmit={handleFormSubmit}
-                    >
-                        <div className="col-12 col-lg-9">
-                            <input name="title" placeholder='add title' value={title} className='form-input' onChange={handleChange}></input>
-                            <textarea
-                                name="description"
-                                placeholder="Here's a new Project..."
-                                value={description}
-                                className="form-input w-100"
-                                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                            onChange={handleChange}
-                            ></textarea>
-                        </div>
 
-                        <div className="col-12 col-lg-3">
-                            <button className="btn btn-primary btn-block py-3" type="submit">
-                                Add Project
-                            </button>
-                        </div>
-                        {error && (
-                            <div className="col-12 my-3 bg-danger text-white p-3">
-                                {error.message}
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">Add New Project</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        )}
-                    </form>
+                            <div className="modal-body">
+                                <form
+                                    className="flex-row g-3 justify-center justify-space-between-md align-center"
+                                    onSubmit={handleFormSubmit}
+                                >
+                                    <div className="col-12 col-lg-9">
+                                        <label for="projectTitle" className="form-label">Project Title</label>
+
+                                        <input
+                                            name="title"
+                                            placeholder='Add project title here'
+                                            value={title}
+                                            className='form-control'
+                                            onChange={handleChange}
+                                        ></input>
+
+                                        <label for="projectDescription" className="form-label">Description</label>
+
+                                        <textarea
+                                            name="description"
+                                            placeholder="Here's a new Project..."
+                                            value={description}
+                                            className="form-control w-100"
+                                            style={{ lineHeight: '1.5', resize: 'vertical' }}
+                                            onChange={handleChange}
+                                        ></textarea>
+
+                                    </div>
+
+                                    <div className="modal-footer mt-4">
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <div className="col-12 col-lg-3">
+                                            <button className="btn btn-main" type="submit" data-bs-dismiss="modal">
+                                                Add Project
+                                            </button>
+                                        </div>
+                                        {error && (
+                                            <div className="col-12 my-3 bg-danger text-white p-3">
+                                                {error.message}
+                                            </div>
+                                        )}
+
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </>
             ) : (
                 <p>
                     You need to be logged in to share your Projects. Please{' '}
                     <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
                 </p>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 };
 
