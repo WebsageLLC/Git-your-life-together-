@@ -71,7 +71,7 @@ const ProjectsList = ({
     <div>
       {showTitle && <h3>{title}</h3>}
 
-      <div className="container mt-3" style={{ backgroundColor: 'white', height: '45rem' }}>
+      <div className="container mt-3" style={{ backgroundColor: 'white', }}>
         <div className="row p-5">
           <h2>Projects</h2>
         </div>
@@ -98,7 +98,7 @@ const ProjectsList = ({
 
                         <span style={{ fontSize: '1rem' }}>
                           <h5>{project.title}</h5>
-                          {/* <p> {project.description}</p> */}
+                          <p> {project.description}</p>
                         </span>
                       </Link>
                     </>
@@ -134,53 +134,16 @@ const ProjectsList = ({
         <div className="row d-flex align-items-center justify-content-center mt-5">
           {/* <button className="btn btn-main col-2">Add New Project</button>  */}
 
-          <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" className="btn btn-main col-2 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add New Project
           </button>
         </div>
+
         {/* Modal */}
-        <ProjectForm />
         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">Add New Project</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body">
 
-                <form className="row g-3">
-                  <div className="col-12">
-                    <label for="projectTitle" className="form-label">Project Title</label>
-                    <input type="" className="form-control" id="inputProjectTitle" />
-                  </div>
-                  <div className="col-12">
-                    <label for="projectDescription" className="form-label">Description</label>
-                    <input type="" className="form-control" id="inputProjectDescription" />
-                  </div>
+          <ProjectForm />
 
-                  <div className="col-12">
-                    <label for="inputState" className="form-label">Choose an optional Template</label>
-                    <select id="inputState" className="form-select">
-                      <option selected>Choose an option...</option>
-                      <option value="language">Language</option>
-                      <option value="savings">Savings Goal</option>
-                      <option value="instrument">Instrument</option>
-                    </select>
-                  </div>
-
-                  {/* <input type="submit" value="signup" className="signup-button" />
-                            <br>  */}
-                </form>
-                <div className="modal-footer mt-4">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-main">Save Project</button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
         </div>
       </div >
     </div>
