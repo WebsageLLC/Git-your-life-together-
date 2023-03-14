@@ -103,7 +103,6 @@ const ProjectForm = () => {
                                 name="description"
                                 placeholder="Here's a new Project..."
                                 value={description}
-                                value={description}
                                 className="form-input w-100"
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                                 onChange={handleChange}
