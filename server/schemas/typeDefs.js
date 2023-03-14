@@ -37,7 +37,7 @@ type Step {
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject (title: String!, description: String!, projectAuthor: String!, userId: ID!): Project
+    addProject (title: String!, description: String!, projectAuthor: String!): Project
     removeProject(projectId: ID!): Project
     updateProject(projectId: ID!, title: String!, description: String!): Project
     addStep (projectId: ID!, stepText: String!, completed: Boolean!): Project

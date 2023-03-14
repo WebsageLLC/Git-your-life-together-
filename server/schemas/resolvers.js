@@ -58,8 +58,8 @@ const resolvers = {
         });
 
         await User.findOneAndUpdate(
-          { _id: userId },
-          // { _Id: context.user._id },
+          // { _id: userId },
+          { _id: context.user._id },
           { $addToSet: { projects: project._id } }
         );
         return project;
