@@ -87,20 +87,20 @@ const ProjectsList = ({
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this project on {project.createdAt}
+                    <p>{project.title}</p>
                   </span>
                 </>
               )}
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{project.projectText}</p>
+              <p> {project.description}</p>
             </div>
-            <Link
+            {/* <Link
               className="btn btn-primary btn-block btn-squared"
               to={`/projects/${project._id}`}
             >
-              Join the discussion on this thought.
-            </Link>
+              Click to view steps.
+            </Link> */}
           </div>
         ))}
     </div>
