@@ -10,15 +10,15 @@ import Auth from '../../utils/auth';
 const ProjectForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-console.log("LINE 13")
+    console.log("LINE 13")
     // const [characterCount, setCharacterCount] = useState(0);
-console.log("LINE15")
+    console.log("LINE15")
     const [addProject, { error }] = useMutation(ADD_PROJECT, {
         update(cache, { data: { addProject } }) {
             console.log("LINE 18")
             try {
                 const { Projects } = cache.readQuery({ query: QUERY_PROJECT });
-console.log("LINE20")
+                console.log("LINE20")
                 cache.writeQuery({
                     query: QUERY_PROJECT,
                     data: { Projects: [addProject, ...Projects] },
@@ -47,9 +47,9 @@ console.log("LINE20")
                     title,
                     description,
                     projectAuthor: Auth.getProfile().data.username,
-                
+
                 },
-                
+
             });
 
             console.log(title)
@@ -63,17 +63,28 @@ console.log("LINE20")
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+        const handleChange = (event) => {
+            const { name, value } = event.target;
 
-        if (name === 'title' && value.length <= 280) {
-            setTitle(value);
-            // setCharacterCount(value.length);
-        }
+            if (name === 'title' && value.length <= 280) {
+                setTitle(value);
+                // setCharacterCount(value.length);
+            }
+            if (name === 'title' && value.length <= 280) {
+                setTitle(value);
+                // setCharacterCount(value.length);
+            }
 
-        if (name === 'description' && value.length <= 280) {
-            setDescription(value);
-            // setCharacterCount(value.length);
-        }
+            if (name === 'description' && value.length <= 280) {
+                setDescription(value);
+                // setCharacterCount(value.length);
+            }
+            if (name === 'description' && value.length <= 280) {
+                setDescription(value);
+                // setCharacterCount(value.length);
+            }
 
+        };
     };
 
     return (
@@ -87,14 +98,15 @@ console.log("LINE20")
                         onSubmit={handleFormSubmit}
                     >
                         <div className="col-12 col-lg-9">
-                            <input name="title" placeholder='add title' value={title} className='form-input' onChange={handleChange}></input>
+                            <input name="title" value="title" placeholder='add title' className='form-input'></input>
                             <textarea
                                 name="description"
                                 placeholder="Here's a new Project..."
                                 value={description}
+                                value={description}
                                 className="form-input w-100"
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
-                            onChange={handleChange}
+                                onChange={handleChange}
                             ></textarea>
                         </div>
 
