@@ -63,28 +63,17 @@ const ProjectForm = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        const handleChange = (event) => {
-            const { name, value } = event.target;
 
-            if (name === 'title' && value.length <= 280) {
-                setTitle(value);
-                // setCharacterCount(value.length);
-            }
-            if (name === 'title' && value.length <= 280) {
-                setTitle(value);
-                // setCharacterCount(value.length);
-            }
+        if (name === 'title' && value.length <= 280) {
+            setTitle(value);
+            // setCharacterCount(value.length);
+        }
 
-            if (name === 'description' && value.length <= 280) {
-                setDescription(value);
-                // setCharacterCount(value.length);
-            }
-            if (name === 'description' && value.length <= 280) {
-                setDescription(value);
-                // setCharacterCount(value.length);
-            }
+        if (name === 'description' && value.length <= 280) {
+            setDescription(value);
+            // setCharacterCount(value.length);
+        }
 
-        };
     };
 
     return (
@@ -98,11 +87,16 @@ const ProjectForm = () => {
                         onSubmit={handleFormSubmit}
                     >
                         <div className="col-12 col-lg-9">
-                            <input name="title" value="title" placeholder='add title' className='form-input'></input>
+                            <input
+                                name="title"
+                                placeholder='add title'
+                                value={title}
+                                className='form-input'
+                                onChange={handleChange}
+                            ></input>
                             <textarea
                                 name="description"
                                 placeholder="Here's a new Project..."
-                                value={description}
                                 value={description}
                                 className="form-input w-100"
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
