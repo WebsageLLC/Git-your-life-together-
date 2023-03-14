@@ -104,7 +104,6 @@ const ProjectsList = ({
                     </>
                   )}
                 </h2>
-
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
                 <button className="btn btn-delete col-1 m-5 mx-2">Delete</button>
                 {/* <Link
