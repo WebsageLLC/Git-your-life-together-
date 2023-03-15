@@ -12,7 +12,6 @@ const ProjectForm = () => {
     const [description, setDescription] = useState('');
     console.log("LINE 13")
     // const [characterCount, setCharacterCount] = useState(0);
-    console.log("LINE15")
     const [addProject, { error }] = useMutation(ADD_PROJECT, {
         update(cache, { data: { addProject } }) {
             console.log("LINE 18")

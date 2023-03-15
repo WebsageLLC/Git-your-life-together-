@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from '../components/Navbar';
-import StepForm from '../components/StepsList';
+import StepList from '../components/StepsList';
+import StepForm from '../components/StepForm';
 import { useLocation } from "react-router-dom";
 import { QUERY_PROJECT } from '../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -13,10 +14,6 @@ const Steps = () => {
     const location = useLocation()
 
     const { projectId } = location.state
-   
- 
-
-
 
     const { loading, data } = useQuery(QUERY_PROJECT, {
         variable: { projectId: projectId },
@@ -42,21 +39,9 @@ console.log(project)
                     
                 </div>
                 
-                        <div className="row d-flex align-items-center justify-content-center mt-3">
-                            <h5 className="col-4">{projectId.steps.map((step) => (
-                    <div key={step._id} className="col-12 mb-3 pb-3">
-                        <h6>Step: {step.stepText}</h6>
-                        <h6>Date: {step.createdAt}</h6>
-                        <h6>{step.completed}</h6>
-                        <button className="btn btn-outline col-1 mx-1 w-25">Edit</button>
-                            <button className="btn btn-delete col-1 mx-2 p-1 w-25">Completed</button></div>
-                       ))}</h5>
-
-                            
-                        </div>
 
                         <div className="row d-flex align-items-center justify-content-center mt-5">
-
+                        <StepList steps={projectId.steps} />
                             <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Add New Step
                             </button>
@@ -66,9 +51,9 @@ console.log(project)
                             <div className="modal-dialog modal-dialog-centered">
                                 <div className="modal-content">
                                     <div className="modal-header">
-
+                                    
                                         <h1 className="modal-title fs-5" id="exampleModalLabel">Add a New Step</h1>
-                                        <StepForm projectId={projectId} project={project} />
+                                        <StepForm projectId={projectId._id} />
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
