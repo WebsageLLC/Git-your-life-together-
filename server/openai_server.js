@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const port = process.env.PORT || 3005;
 require("dotenv").config();
 
 const app = express();
@@ -17,18 +18,21 @@ const openaiApi = axios.create({
 });
 
 app.post("/chat", async (req, res) => {
-  const { prompt } = req.body;
-
-  const response = await openaiApi.post("completions", {
-    model: "text-davinci-003",
-    prompt: prompt,
-    max_tokens: 500,
-  });
-
-  res.send(response.data.choices[0].text);
+  try {
+    const { prompt } = req.body;
+    const response = await openaiApi.post("completions", {
+      model: "text-davinci-003",
+      prompt: prompt,
+      max_tokens: 500,
+    });
+    res.send(response.data.choices[0].text);
+  } catch (error) {
+    console.error("Error making API request:", error);
+    res.status(500).send("Error making API request");
+  }
 });
 
-const port = 3000;
+
 app.listen(port, () => {
   console.log(`I can heeeeeaaaar yoooooouuuu on port ${port}`);
 });
