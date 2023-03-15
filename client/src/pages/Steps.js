@@ -6,18 +6,10 @@ import { QUERY_PROJECT } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
 
-
-
-
 const Steps = () => {
     const location = useLocation()
 
     const { projectId } = location.state
-   
- 
-
-
-
     const { loading, data } = useQuery(QUERY_PROJECT, {
         variable: { projectId: projectId },
     })

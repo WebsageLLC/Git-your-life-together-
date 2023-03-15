@@ -3,14 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/GYLTlogo.png';
 import happyGuy from '../assets/illustration1.png';
 
-// import ThoughtList from '../components/ThoughtList';
-// import ThoughtForm from '../components/ThoughtForm';
-
-// import { QUERY_THOUGHTS } from '../utils/queries';
-
 const Home = () => {
-  //   const { loading, data } = useQuery(QUERY_THOUGHTS);
-  //   const thoughts = data?.thoughts || [];
 
   return (
     <div className="container-fluid">

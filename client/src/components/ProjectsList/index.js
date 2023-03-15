@@ -40,7 +40,7 @@ const handleRemoveButton = async (event) => {
     try {
         const { data } = await removeProject({
             variables: {
-                id: projects.id,
+                projectId: projects._id
             },
         });
     } catch (err) {
@@ -98,7 +98,7 @@ const handleRemoveButton = async (event) => {
                   )}
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
-                <button className="btn btn-delete col-1 m-5 mx-2" onclick={handleRemoveButton}>Delete</button>
+                <button className="btn btn-delete col-1 m-5 mx-2" onClick={handleRemoveButton}>Delete</button>
               
               </div>
             ))}
