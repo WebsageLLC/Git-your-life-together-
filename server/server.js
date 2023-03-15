@@ -42,3 +42,35 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
 // Call the async function to start the server
   startApolloServer(typeDefs, resolvers);
+
+
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const axios = require("axios");
+const port = process.env.PORT || 3005;
+require("dotenv").config();
+app.use(bodyParser.json());
+app.use(cors());
+
+const openaiApi = axios.create({
+  baseURL: "https://api.openai.com/v1/",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+  },
+});
+
+app.post("/chat", async (req, res) => {
+  const { prompt } = req.body;
+  const response = await openaiApi.post("completions", {
+    model: "text-davinci-003",
+    prompt: prompt,
+    max_tokens: 500,
+  });
+  res.send(response.data.choices[0].text);
+});
+
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});

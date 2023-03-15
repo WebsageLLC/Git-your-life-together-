@@ -5,8 +5,7 @@ import StepForm from '../components/StepForm';
 import { useLocation } from "react-router-dom";
 import { QUERY_PROJECT } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-
-
+import AskChatGPT from '../components/AskChatGPT'; 
 
 
 
@@ -14,7 +13,6 @@ const Steps = () => {
     const location = useLocation()
 
     const { projectId } = location.state
-
     const { loading, data } = useQuery(QUERY_PROJECT, {
         variable: { projectId: projectId },
     })
@@ -67,8 +65,9 @@ console.log(project)
                         </div>
 
                         <div>
-                            <div className="row p-5 mt-5 text-center">
-                                <h5 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help...</h5>
+                            <div className="row p-2 mt-2 text-center">
+                                {/* <h5 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help...</h5> */}
+                                <AskChatGPT showNavbar={false} />
                                 <textarea className="form-control col-12 mb-3" aria-label="With textarea"></textarea>
 
                                 <button type="submit" className="col-12 btn btn-main">

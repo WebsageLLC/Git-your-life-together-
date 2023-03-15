@@ -10,21 +10,16 @@ import Auth from '../../utils/auth';
 const ProjectForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    console.log("LINE 13")
-    // const [characterCount, setCharacterCount] = useState(0);
     const [addProject, { error }] = useMutation(ADD_PROJECT, {
         update(cache, { data: { addProject } }) {
-            console.log("LINE 18")
             try {
                 const { Projects } = cache.readQuery({ query: QUERY_PROJECT });
-                console.log("LINE20")
                 cache.writeQuery({
                     query: QUERY_PROJECT,
                     data: { Projects: [addProject, ...Projects] },
                 });
             } catch (e) {
                 console.error(e);
-                console.log("LINE 27")
             }
 
             // update me object's cache
@@ -40,7 +35,6 @@ const ProjectForm = () => {
         event.preventDefault();
 
         try {
-            console.log("LINE 44")
             const { data } = await addProject({
                 variables: {
                     title,
@@ -50,12 +44,9 @@ const ProjectForm = () => {
                 },
 
             });
-
-            console.log(title)
             setTitle('');
             setDescription('');
         } catch (err) {
-            console.log("LINE 55")
             console.error(err);
         }
     };
@@ -65,12 +56,10 @@ const ProjectForm = () => {
 
         if (name === 'title' && value.length <= 280) {
             setTitle(value);
-            // setCharacterCount(value.length);
         }
 
         if (name === 'description' && value.length <= 280) {
             setDescription(value);
-            // setCharacterCount(value.length);
         }
 
     };
