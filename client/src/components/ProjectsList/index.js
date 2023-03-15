@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import noProject from '../../assets/noProjects.png';
 import ProjectForm from '../ProjectForm';
+import { useMutation } from '@apollo/client';
 
+import { REMOVE_PROJECT } from '../../utils/mutations';
+import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 
 const ProjectsList = ({
   projects,
@@ -11,6 +14,41 @@ const ProjectsList = ({
   showTitle = true,
   showUsername = true,
 }) => {
+  //////////// ATTEMPTING REMOVE PROJECT LOGIC /////////////
+  const [removeProject, { error }] = useMutation(REMOVE_PROJECT, {
+    update(cache, { data: { removeProject } }) {
+        try {
+            const { Projects } = cache.readQuery({ query: QUERY_PROJECT });
+            cache.writeQuery({
+                query: QUERY_PROJECT,
+                data: { Projects: [removeProject, ...Projects] },
+            });
+        } catch (e) {
+            console.error(e);
+        }
+
+        // update me object's cache
+        const { me } = cache.readQuery({ query: QUERY_ME });
+        cache.writeQuery({
+            query: QUERY_ME,
+            data: { me: { ...me, projects: [...me.projects, removeProject] } },
+        });
+    },
+});
+
+const handleRemoveButton = async (event) => {
+    try {
+        const { data } = await removeProject({
+            variables: {
+                id: projects.id,
+            },
+        });
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+  //////////////////////////////////////////////////////////
   if (!projects.length) {
     return (
       <div className="container mt-3" style={{ backgroundColor: 'white', height: '100rem' }}>
@@ -60,7 +98,7 @@ const ProjectsList = ({
                   )}
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
-                <button className="btn btn-delete col-1 m-5 mx-2">Delete</button>
+                <button className="btn btn-delete col-1 m-5 mx-2" onclick={handleRemoveButton}>Delete</button>
               
               </div>
             ))}
