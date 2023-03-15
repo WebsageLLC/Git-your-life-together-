@@ -24,8 +24,8 @@ function AskChatGPT() {
       <Navbar />
       <div className="container mt-3" style={{ backgroundColor: 'white', height: '45rem' }}>
         <div className="row p-5 text-center">
-          <h5 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help</h5>
-
+          <h4 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help.</h4>
+          <h6 className="col-12 mb-3" id="helpChatGPT">(Be patient, this can take up to 10 seconds.)</h6>
           <form onSubmit={handleSubmit}>
             <textarea className="form-control col-12 mb-3"
               type="text"
