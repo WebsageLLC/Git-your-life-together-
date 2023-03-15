@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-//import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../Navbar';
 
-const AskChatGPT = () => {
+function AskChatGPT() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    axios
-      .post("/chat", { prompt })
-      .then((res) => {
-        setResponse(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const data = { prompt };
+
+    try {
+      const response = await axios.post("/chat", data);
+      setResponse(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,15 +44,6 @@ const AskChatGPT = () => {
 
     </div>
   );
-
-  //   //const location = useLocation();
-  //   //const navigate = useNavigate();
-  //   return (
-  //     <div>
-  //     <h1>Need help coming up with steps? Ask ChatGPT!</h1>
-  //     <div id="chat-container"></div>
-  //     </div>
-  //   );
 };
 
 export default AskChatGPT;
