@@ -78,19 +78,20 @@ mutation RemoveProject($projectId: ID!) {
 
 
 export const ADD_STEP = gql`
-  mutation addStep($projectId: ID!, $stepText: String!, $completed: Boolean) {
-    addStep(projectId: $projectId, stepText:$stepText, completed: $completed) {
-      _id
-      thoughtText
-      thoughtAuthor
+mutation($projectId: ID!, $stepText: String!, $completed: Boolean!) {
+  addStep(projectId: $projectId, stepText: $stepText, completed: $completed) {
+    description
+    projectAuthor
+    _id
+    title
+    steps {
+      stepText
       createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
+      completed
+      _id
     }
   }
+}
 `;
 
 export const UPDATE_STEP = gql`
@@ -126,3 +127,4 @@ mutation Mutation($projectId: ID!, $stepId: ID!) {
   }
 }
 `;
+
