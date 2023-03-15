@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import noProject from '../../assets/noProjects.png';
 import ProjectForm from '../ProjectForm';
 
+
 const ProjectsList = ({
   projects,
   title,
@@ -25,46 +26,7 @@ const ProjectsList = ({
 
         <ProjectForm />
 
-        {/* Modal */}
-        {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">Add New Project</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body">
-
-                <form className="row g-3">
-                  <div className="col-12">
-                    <label for="projectTitle" className="form-label">Project Title</label>
-                    <input type="" className="form-control" id="inputProjectTitle" />
-                  </div>
-                  <div className="col-12">
-                    <label for="projectDescription" className="form-label">Description</label>
-                    <input type="" className="form-control" id="inputProjectDescription" />
-                  </div>
-
-                  <div className="col-12">
-                    <label for="inputState" className="form-label">Choose an optional Template</label>
-                    <select id="inputState" className="form-select">
-                      <option selected>Choose an option...</option>
-                      <option value="language">Language</option>
-                      <option value="savings">Savings Goal</option>
-                      <option value="instrument">Instrument</option>
-                    </select>
-                  </div>
-                </form>
-
-                <div className="modal-footer mt-4">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-main">Save Project</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div> */}
+        
       </div>)
   }
   return (
@@ -83,18 +45,11 @@ const ProjectsList = ({
               <div key={project._id} className="row">
                 <h2 className="col-2 p-2 ms-5">
                   {showUsername ? (
-                    // <Link
-                    //   className=""
-                    //   to={`/profiles/${project.projectAuthor}`}
-                    // >
-                    {/* {project.projectAuthor} <br />
-                      <span style={{ fontSize: '1rem' }}>
-                        had this project on {project.createdAt}
-                      </span> */}
-                    // </Link>
+                    <p>No projects to display</p>
+                
                   ) : (
                     <>
-                      <Link to="/steps" className="" style={{ textDecoration: 'none', color: 'black' }}>
+                      <Link to="/steps" className="" state={{projectId: project, steps: project.steps}}   style={{ textDecoration: 'none', color: 'black' }}>
 
                         <span style={{ fontSize: '1rem' }}>
                           <h5>{project.title}</h5>
@@ -106,12 +61,7 @@ const ProjectsList = ({
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
                 <button className="btn btn-delete col-1 m-5 mx-2">Delete</button>
-                {/* <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/projects/${project._id}`}
-            >
-              Click to view steps.
-            </Link> */}
+              
               </div>
             ))}
 
