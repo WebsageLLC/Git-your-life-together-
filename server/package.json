@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js && node openai_server.js",
-    "watch": "nodemon server.js openai_server.js",
+    "start": "node server.js",
+    "watch": "nodemon",
     "seed": "node seeders/seed.js"
   },
   "keywords": [],
