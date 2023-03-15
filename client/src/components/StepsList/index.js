@@ -18,13 +18,7 @@ const StepForm = ({ projectId }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-console.log("line24")
-console.log(projectId._id)
-console.log(projectId)
-console.log(stepText)
-console.log(completed)
     try {
-      console.log("line 27")
       const { data } = await addStep({
         variables: {
           projectId,
@@ -32,17 +26,14 @@ console.log(completed)
         },
         
       });
-      console.log("line33")
       setAddStepText('');
     } catch (err) {
-      console.log("line36")
       console.error(err);
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("line42")
     if (name === 'stepText' && value.length <= 280) {
       setAddStepText({
         ...addStepText, [name]:value,
