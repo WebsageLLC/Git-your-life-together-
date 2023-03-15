@@ -12,7 +12,7 @@ function AskChatGPT() {
     const data = { prompt };
 
     try {
-      const response = await axios.post("/chat", data);
+      const response = await axios.post("http://localhost:3005/chat", data);
       setResponse(response.data);
     } catch (error) {
       console.log(error);
