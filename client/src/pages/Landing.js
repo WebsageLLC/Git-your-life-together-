@@ -1,5 +1,4 @@
 import React from 'react';
-//import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProjectsList from '../components/ProjectsList';
 import { Navigate, useParams } from 'react-router-dom';
@@ -19,7 +18,6 @@ const Landing = () => {
   });
 
   const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Navigate to="/landing" />;
   }

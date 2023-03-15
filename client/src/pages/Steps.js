@@ -12,11 +12,6 @@ const Steps = () => {
     const location = useLocation()
 
     const { projectId } = location.state
-   
- 
-
-
-
     const { loading, data } = useQuery(QUERY_PROJECT, {
         variable: { projectId: projectId },
     })
