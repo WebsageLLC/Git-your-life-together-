@@ -27,7 +27,7 @@ console.log(projectId)
 
       setStepText('');
      
-    
+    refreshPage();
       
     } catch (err) {
       console.error(err);
@@ -83,7 +83,7 @@ console.log(projectId)
             <div className="col-12 col-lg-3">
             <div className="modal-footer mt-4">
                                     <button type="submit" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                                    <button type="submit" className="btn btn-main" onClick={refreshPage} >Save Step</button>
+                                    <button type="submit" className="btn btn-main"  >Save Step</button>
                                 </div>
             
             </div>
