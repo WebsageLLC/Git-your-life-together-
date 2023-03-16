@@ -7,26 +7,25 @@ const StepList = ({ steps = [] }) => {
 
   return (
     <>
-      <h3
-        className="p-5 display-inline-block"
-        style={{ borderBottom: '1px dotted #1a1a1a' }}
-      >
-        Steps
-      </h3>
-      <div className="flex-row my-4">
-        {steps &&
-          steps.map((step) => (
-            <div key={step._id} className="col-12 mb-3 pb-3">
-              <div className="p-3 bg-dark text-light">
-                <h5 className="card-header">
-                  <span style={{ fontSize: '0.825rem' }}>
-                    on {step.createdAt}
-                  </span>
-                </h5>
-                <p className="card-body">{step.stepText}</p>
+      <div className='row ms-5'>
+        <h4 className="row ps-5" > Steps</h4>
+        <div className="flex-row">
+          {steps &&
+            steps.map((step) => (
+              <div key={step._id} className="col-12 ">
+                <div className=" ps-5 mt-1 mb-5">
+                  <h5 style={{ color: '#3120E0' }}><strong>- {step.stepText}</strong></h5>
+
+                  <h5 >
+                    <span style={{ fontSize: '0.825rem' }}>{step.createdAt}
+                    </span>
+                  </h5>
+                  <hr style={{ color: 'coral', width: '50rem' }}></hr>
+
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
     </>
   );
