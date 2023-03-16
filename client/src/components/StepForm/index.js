@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, redirect, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_STEP } from '../../utils/mutations';
 import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
@@ -11,12 +11,12 @@ console.log(projectId)
  const [characterCount, setCharacterCount] = useState(0);
 
   const [addOneMoreStep, { error }] = useMutation(ADD_STEP);
-  console.log("line 13")
+  const navigate = useNavigate()
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("line 16")
+    console.log("HELLO")
     try {
-        console.log("line 18")
+       
       const { data } = await addOneMoreStep({
         variables: {
           projectId,
@@ -26,11 +26,14 @@ console.log(projectId)
       });
 
       setStepText('');
-      console.log("line 29")
+     
+    
+      
     } catch (err) {
       console.error(err);
-      console.log("line 30")
+     
     }
+    
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,11 +42,14 @@ console.log(projectId)
       setStepText(value);
       setCharacterCount(value.length);
     }
-    console.log("line 40")
+    
   };
 
 
- 
+  function refreshPage() {
+    navigate("/landing", {refresh: true})
+    window.location.reload(false);
+  }
 
   return (
     <div>
@@ -77,7 +83,7 @@ console.log(projectId)
             <div className="col-12 col-lg-3">
             <div className="modal-footer mt-4">
                                     <button type="submit" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                                    <button type="submit" className="btn btn-main"  >Save Step</button>
+                                    <button type="submit" className="btn btn-main" onClick={refreshPage} >Save Step</button>
                                 </div>
             
             </div>
