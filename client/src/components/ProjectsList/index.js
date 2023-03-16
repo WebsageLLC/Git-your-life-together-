@@ -108,10 +108,6 @@ const ProjectsList = ({
 
         </div>
 
-
-        <div className="row d-flex align-items-center justify-content-center mt-5">
-
-
         {/* Modal */}
         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
