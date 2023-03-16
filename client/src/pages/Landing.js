@@ -61,12 +61,13 @@ const Landing = () => {
   return (
     <div className="container-fluid">
       <Navbar />
-      <ProjectsList
+      {user.projects?.length > 0 && 
+      (<ProjectsList
         projects={user.projects}
         title={`${user.username}'s projects:`}
         showTitle={false}
         showUsername={false}
-      />
+      />)}
     </div>
   );
 };

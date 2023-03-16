@@ -4,51 +4,46 @@ import { Link } from 'react-router-dom';
 import noProject from '../../assets/noProjects.png';
 import ProjectForm from '../ProjectForm';
 import { useMutation } from '@apollo/client';
-
 import { REMOVE_PROJECT } from '../../utils/mutations';
 import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 
 const ProjectsList = ({
   projects,
   title,
-  showTitle = true,
-  showUsername = true,
+  showTitle,
+  showUsername,
 }) => {
-  //////////// ATTEMPTING REMOVE PROJECT LOGIC /////////////
-  const [removeProject, { error }] = useMutation(REMOVE_PROJECT, {
-    update(cache, { data: { removeProject } }) {
-      try {
-        const { Projects } = cache.readQuery({ query: QUERY_PROJECT });
-        cache.writeQuery({
-          query: QUERY_PROJECT,
-          data: { Projects: [removeProject, ...Projects] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
 
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, projects: [...me.projects, removeProject] } },
-      });
-    },
-  });
+  const [removeProject, {error}] = useMutation(REMOVE_PROJECT, 
+    {
+      update(cache, { data: { 
+        removeProject} }) {
+          try {
+            cache.writeQuery({ 
+                query: QUERY_ME, 
+                data: {me: removeProject}, 
+              });
+            } catch(e) {
+              console.error(e);
+            }
+              },
+            });
+     
+            const handleRemoveProject = async (project) => {
+              try {
+                const { data } = await removeProject({ 
+                  variables: 
+                  {projectId: project._id},
+                });
+                console.log(project)
+              } catch (err) {
+                console.log(project)
+                console.log(project._id)
+                console.error(err);
+              }
+            };
 
-  const handleRemoveButton = async (event) => {
-    try {
-      const { data } = await removeProject({
-        variables: {
-          projectId: projects._id
-        },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
-  //////////////////////////////////////////////////////////
   if (!projects.length) {
     return (
       <div className="container mt-3" style={{ backgroundColor: 'white', height: '100rem' }}>
@@ -102,7 +97,8 @@ const ProjectsList = ({
                   )}
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
-                <button className="btn btn-delete col-1 m-5 mx-2" onClick={handleRemoveButton}>Delete</button>
+
+                <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveProject(project)} >Delete</button>
 
               </div>
             ))}
@@ -110,18 +106,10 @@ const ProjectsList = ({
 
 
 
-          {/* PROGRESS BAR
-          <div className="progress col-3 mx-3 p-0" role="progressbar" aria-label="Example with label" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100">
-            <div className="progress-bar"
-              style={{ width: '50%', backgroundImage: 'linear-gradient(to right, #3120E0,  #21E1E1)' }}>
-              50%
-            </div>
-          </div> */}
-
-
         </div>
 
+
+        <div className="row d-flex align-items-center justify-content-center mt-5">
 
 
         {/* Modal */}
