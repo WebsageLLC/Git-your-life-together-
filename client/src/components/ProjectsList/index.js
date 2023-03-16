@@ -13,6 +13,7 @@ const ProjectsList = ({
   showTitle,
   showUsername,
 }) => {
+
   const [removeProject, {error}] = useMutation(REMOVE_PROJECT, 
     {
       update(cache, { data: { 
@@ -41,8 +42,7 @@ const ProjectsList = ({
                 console.error(err);
               }
             };
-    
-  
+
 
   if (!projects.length) {
     return (
@@ -59,42 +59,47 @@ const ProjectsList = ({
 
         <ProjectForm />
 
-        
+
       </div>)
   }
   return (
     <div>
       {showTitle && <h3>{title}</h3>}
 
-      <div className="container mt-3" style={{ backgroundColor: 'white', }}>
+      <div className="container " style={{ backgroundColor: 'white', }}>
         <div className="row p-5">
-          <h2>Projects</h2>
+          <h2 className='col-10'>Projects</h2>
+          <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add New Project
+          </button>
         </div>
 
-        <div className="row d-flex align-items-center justify-content-center">
+        <div className="row d-flex  align-items-center justify-content-center">
 
           {projects &&
             projects.map((project) => (
-              <div key={project._id} className="row">
-                <h2 className="col-2 p-2 ms-5">
+              <div key={project._id} className="row align-items-center">
+                <h2 className="col-6 p-2 ms-5">
                   {showUsername ? (
                     <p>No projects to display</p>
-                
+
                   ) : (
                     <>
-                      <Link to="/steps" className="" state={{projectId: project, steps: project.steps}}   style={{ textDecoration: 'none', color: 'black' }}>
+                      <Link to="/steps" className="" state={{ projectId: project, steps: project.steps }} style={{ textDecoration: 'none', color: 'black' }}>
 
-                        <span style={{ fontSize: '1rem' }}>
-                          <h5>{project.title}</h5>
-                          <p> {project.description}</p>
+                        <span className="row" style={{ fontSize: '1rem' }}>
+                          <h5 className='col-8'>{project.title}</h5>
+                          <p className=''> {project.description}</p>
                         </span>
                       </Link>
+                      <hr></hr>
                     </>
                   )}
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
+
                 <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveProject(project)} >Delete</button>
-              
+
               </div>
             ))}
 
@@ -103,13 +108,9 @@ const ProjectsList = ({
 
         </div>
 
-        <div className="row d-flex align-items-center justify-content-center mt-5">
-         
 
-          <button type="button" className="btn btn-main col-2 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add New Project
-          </button>
-        </div>
+        <div className="row d-flex align-items-center justify-content-center mt-5">
+
 
         {/* Modal */}
         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
