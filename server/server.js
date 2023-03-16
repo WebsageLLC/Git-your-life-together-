@@ -47,7 +47,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-const port = process.env.PORT || 3005;
+const port = 3005;
 require("dotenv").config();
 app.use(bodyParser.json());
 app.use(cors());
