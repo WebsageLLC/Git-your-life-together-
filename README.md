@@ -44,14 +44,21 @@ These instructions will get you a copy of the project up and running on your loc
 ## Screenshots
 
 ### Home page
-
+![home page](./assets/Home_Page.png)
 ### Navigation Bar
-
-### Login and Sign Up Page
-
-### Etc
-
-### Etc
+![nav bar](./assets/Nav_Bar.png)
+### Login Page
+![login page](./assets/Login_Page.png)
+### Sign Up Page
+![signup page](./assets/Signup_Page.png)
+### New Project Page
+![new project page](./assets/New_Project.png)
+### Saved Projects Page
+![projects page](./assets/Saved_Projects.png)
+### ChatGPT Page with Response
+![chatgpt page](./assets/Chatgpt_Response.png)
+### ChatGPT Page with Follow Up
+![followup page](./assets/Chatgpt_Followup.png)
 
 
 <br>      
@@ -63,8 +70,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Figma Wireframe
 ![Figma page](./assets/Figma_Wireframe.png)
+
+### First Repository (now defunct) Contributions
+![dead repo](./assets/prevrepocommit.png)
 <br>
     
+
 ## Built Using
 GitHub - https://github.com/
 
@@ -81,7 +92,6 @@ React - https://reactjs.org/
 MongoDB - https://www.mongodb.com/
 
 Node.js - https://nodejs.org/
-
 
 
 <br>    
@@ -102,11 +112,13 @@ Stephen Totten - [GitHub](https://github.com/Crothos)
 
 ## Saved for Later
 
-* Refine formatting of returned chatGPT responses.
+Default templates to get users started
 
-* Allow users to search the database to see if others have already mapped out similar goals to use as inspiration.
+Refine formatting of returned chatGPT responses.
 
-* Allow users to connect with one another to share successes and insights
+Allow users to search the database to see if others have already mapped out similar goals to use as inspiration.
+
+Allow users to connect with one another to share successes and insights
 
 
 <br>     
