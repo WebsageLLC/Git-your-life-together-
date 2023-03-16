@@ -44,8 +44,10 @@ const ProjectsList = ({
     
   
 
-  if (!projects.length) {
+  if (projects.length < 1 ) 
+ {
     return (
+    
       <div className="container mt-3" style={{ backgroundColor: 'white', height: '100rem' }}>
         <div className="row p-5 text-center">
           <h2>No Projects yet!</h2>
@@ -57,13 +59,14 @@ const ProjectsList = ({
           <img className="" src={noProject} alt="Logo" height="500rem" />
         </div>
 
-        <ProjectForm />
+        
 
         
       </div>)
   }
   return (
     <div>
+      
       {showTitle && <h3>{title}</h3>}
 
       <div className="container mt-3" style={{ backgroundColor: 'white', }}>
@@ -77,10 +80,7 @@ const ProjectsList = ({
             projects.map((project) => (
               <div key={project._id} className="row">
                 <h2 className="col-2 p-2 ms-5">
-                  {showUsername ? (
-                    <p>No projects to display</p>
-                
-                  ) : (
+                   
                     <>
                       <Link to="/steps" className="" state={{projectId: project, steps: project.steps}}   style={{ textDecoration: 'none', color: 'black' }}>
 
@@ -90,7 +90,7 @@ const ProjectsList = ({
                         </span>
                       </Link>
                     </>
-                  )}
+                    <ProjectForm />
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
                 <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveProject(project)} >Delete</button>
@@ -120,6 +120,7 @@ const ProjectsList = ({
       </div >
     </div>
   );
+  
 };
 
 export default ProjectsList;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate, redirect, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_STEP } from '../../utils/mutations';
+import { ADD_STEP, REMOVE_STEP } from '../../utils/mutations';
 import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
@@ -24,28 +24,20 @@ console.log(projectId)
           completed: false,
         },
       });
-
       setStepText('');
-     
     refreshPage();
-      
     } catch (err) {
       console.error(err);
-     
     }
     
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     if (name === 'stepText' && value.length <= 280) {
       setStepText(value);
       setCharacterCount(value.length);
     }
-    
   };
-
-
   function refreshPage() {
     navigate("/landing", {refresh: true})
     window.location.reload(false);
