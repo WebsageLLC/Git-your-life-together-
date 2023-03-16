@@ -71,8 +71,8 @@ const StepList = ({ projects, steps = [] }) => {
                 <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveStep(step)}  >Delete</button>
                 <p className="card-body">{step.stepText}</p>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
     </>
   );

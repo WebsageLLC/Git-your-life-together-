@@ -18,7 +18,7 @@ function AskChatGPT({showNavbar = true }) {
       console.log(error);
     }
   };
-
+ 
   return (
     <div className="container-fluid">
       {showNavbar && <Navbar />}
@@ -38,7 +38,11 @@ function AskChatGPT({showNavbar = true }) {
 
           </form>
           <br />
-          <p>{response}</p>
+          {response &&
+            <div className="col-12 mt-3">
+              <pre className="response" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>{response}</pre>
+            </div>
+  }
         </div>
       </div>
 
