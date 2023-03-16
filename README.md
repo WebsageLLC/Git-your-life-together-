@@ -2,7 +2,7 @@
 
 ## Description
 
-Git Your Life Together is an app that allows the user to reach a goal by breaking the path to achieving that goal into manageable steps. Users can input however many steps they determine are necessary and can interact with those steps in a number of ways (e.g., rearrange order, mark as in progress, mark as completed). If a user is unsure what steps are needed to reach a goal, they can input their query into ChatGPT, which will generate a list of steps that are required. From there, users can cut and paste the steps they wish to include and edit them as needed to implement thier own plan of action. Users can save and edit their personal goal pathways and they can also search the database for similar goals that other users have mapped out as inspiration.
+Git Your Life Together is an app that allows the user to reach a goal by breaking the path to achieving that goal into manageable steps. Users can input however many steps they determine are necessary and can interact with those steps in a number of ways (e.g., rearrange order, mark as in progress, mark as completed). If a user is unsure what steps are needed to reach a goal, they can input their query into ChatGPT, which will generate a list of steps that are required. From there, users can cut and paste the steps they wish to include and edit them as needed to implement thier own plan of action. Users can save and edit their personal goal pathways. 
 
 <br>   
 
@@ -10,7 +10,7 @@ Git Your Life Together is an app that allows the user to reach a goal by breakin
 
 - [Getting Started](#getting-started)
 - [Screenshots](#screenshots)
-- [Origins](#origins)
+- [Early Development](#early-development)
 - [Built Using](#built-using)
 - [Authors](#authors)
 - [Saved for Later](#saved-for-later)
@@ -35,7 +35,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 6. Type git clone, and then paste the URL you copied in Step 3.
 
-          git clone https://github.com/Crothos/git-your-life-together-app.git
+          git clone https://github.com/JessicaIOrtega/Git-your-life-together-.git
 
 7. Press Enter and a new local cloned repository will be created.   
     
@@ -56,17 +56,32 @@ These instructions will get you a copy of the project up and running on your loc
 
 <br>      
 
-## Origins
+## Early Development
 
 ### Initial Wireframe/Napkin Sketch
-![test page](./assets/test%20wireframe.png)
-![test page2](./assets/test%20wireframe.png)
+![wireframe page](./assets/Initial_Wireframe.png)
 
 ### Figma Wireframe
-
+![Figma page](./assets/Figma_Wireframe.png)
 <br>
     
 ## Built Using
+GitHub - https://github.com/
+
+Openai API - https://openai.com/blog/openai-api
+
+Axios - https://axios-http.com/docs/intro
+
+Bootstrap - https://getbootstrap.com/
+
+Express - https://expressjs.com/
+
+React - https://reactjs.org/
+
+MongoDB - https://www.mongodb.com/
+
+Node.js - https://nodejs.org/
+
 
 
 <br>    
@@ -87,13 +102,28 @@ Stephen Totten - [GitHub](https://github.com/Crothos)
 
 ## Saved for Later
 
+* Refine formatting of returned chatGPT responses.
+
+* Allow users to search the database to see if others have already mapped out similar goals to use as inspiration.
+
+* Allow users to connect with one another to share successes and insights
 
 
 <br>     
 
 ## Acknowledgments
 
+Ian Darland
 
+Diem Ly
+
+Negin Namiranian
+
+Leah Nelson
+
+Canva - https://www.canva.com/
+
+Figma - https://www.figma.com
 
 <br>
 
