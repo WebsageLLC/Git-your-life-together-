@@ -46,7 +46,6 @@ const ProjectsList = ({
 
   if (!projects.length) {
     return (
-    
       <div className="container mt-3" style={{ backgroundColor: 'white', height: '100rem' }}>
         <div className="row p-5 text-center">
           <h2>No Projects yet!</h2>
@@ -58,14 +57,13 @@ const ProjectsList = ({
           <img className="" src={noProject} alt="Logo" height="500rem" />
         </div>
 
-        
+        <ProjectForm />
 
 
       </div>)
   }
   return (
     <div>
-      
       {showTitle && <h3>{title}</h3>}
 
       <div className="container " style={{ backgroundColor: 'white', }}>
@@ -76,7 +74,7 @@ const ProjectsList = ({
           </button>
         </div>
 
-        <div className="row">
+        <div className="row d-flex  align-items-center justify-content-center">
 
           {projects &&
             projects.map((project) => (
@@ -96,7 +94,7 @@ const ProjectsList = ({
                       </Link>
                       <hr></hr>
                     </>
-                    <ProjectForm />
+                  )}
                 </h2>
                 <button className="btn btn-outline col-1 m-5 mx-2">Edit</button>
 
@@ -119,7 +117,6 @@ const ProjectsList = ({
       </div >
     </div>
   );
-  
 };
 
 export default ProjectsList;
