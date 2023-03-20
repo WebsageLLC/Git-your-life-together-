@@ -67,7 +67,6 @@ const Steps = () => {
                         {/* <h5 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help...</h5> */}
                         <AskChatGPT showNavbar={false} />
                         {/* <textarea className="form-control col-12 mb-3" aria-label="With textarea"></textarea>
-
                                 <button type="submit" className="col-12 btn btn-main">
                                     Ask
                                 </button> */}

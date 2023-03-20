@@ -26,12 +26,12 @@ const StepForm = ({ projectId }) => {
       });
 
       setStepText('');
-
-      refreshPage();
-
+     
+    refreshPage();
+      
     } catch (err) {
       console.error(err);
-
+     
     }
 
   };
@@ -42,7 +42,7 @@ const StepForm = ({ projectId }) => {
       setStepText(value);
       setCharacterCount(value.length);
     }
-
+    
   };
 
 

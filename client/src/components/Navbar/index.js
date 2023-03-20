@@ -18,7 +18,7 @@ const Navbar = () => {
 
                 <ul className="nav justify-content-end">
                     <li className="nav-item">
-                        <Link to="/landing"><a className="nav-link active" aria-current="page">My Projects</a></Link>
+                        <Link to="/"><a className="nav-link active" aria-current="page">My Projects</a></Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/askchatgpt"><a className="nav-link">Ask Chat GPT</a></Link>

@@ -2,10 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/GYLTlogo.png';
 import happyGuy from '../assets/illustration1.png';
+import Auth from '../utils/auth';
+import Landing from '../pages/Landing';
+
 
 const Home = () => {
+  const loggedIn = Auth.loggedIn();
 
   return (
+    <div className="container-fluid">
+      {loggedIn ? (
+        <div>
+          <Landing />{" "}
+        </div>
+        
+      ) : (
+   
     <div className="container-fluid">
 
       <nav className="navbar">
@@ -40,7 +52,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      </div>
+)}
     </div>
   );
 };
