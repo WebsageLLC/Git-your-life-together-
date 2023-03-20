@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 //import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import noProject from '../../assets/noProjects.png';
-import ProjectForm from '../ProjectForm';
 import { useMutation } from '@apollo/client';
 import { REMOVE_PROJECT } from '../../utils/mutations';
 import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
+// import ProjectForm from '../ProjectForm';
 
 const ProjectsList = ({
   projects,
@@ -44,24 +43,6 @@ const ProjectsList = ({
             };
 
 
-  if (!projects.length) {
-    return (
-      <div className="container mt-3" style={{ backgroundColor: 'white', height: '100rem' }}>
-        <div className="row p-5 text-center">
-          <h2>No Projects yet!</h2>
-        </div>
-        <div className="row d-flex align-items-center justify-content-center mt-0">
-          <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Project</button>
-        </div>
-        <div className='d-flex justify-content-center mt-5'>
-          <img className="" src={noProject} alt="Logo" height="500rem" />
-        </div>
-
-        <ProjectForm />
-
-
-      </div>)
-  }
   return (
     <div>
       {showTitle && <h3>{title}</h3>}
@@ -69,15 +50,12 @@ const ProjectsList = ({
       <div className="container " style={{ backgroundColor: 'white', }}>
         <div className="row p-5">
           <h2 className='col-10'>Projects</h2>
-          <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add New Project
-          </button>
         </div>
 
         <div className="row d-flex  align-items-center justify-content-center">
 
-          {projects &&
-            projects.map((project) => (
+          {projects && 
+           projects.map((project) => (
               <div key={project._id} className="row align-items-center">
                 <h2 className="col-6 p-2 ms-5">
                   {showUsername ? (
@@ -101,6 +79,7 @@ const ProjectsList = ({
                 <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveProject(project)} >Delete</button>
 
               </div>
+           
             ))}
 
 
@@ -109,11 +88,11 @@ const ProjectsList = ({
         </div>
 
         {/* Modal */}
-        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-          <ProjectForm />
+      <ProjectForm/>
 
-        </div>
+        </div> */}
       </div >
     </div>
   );
