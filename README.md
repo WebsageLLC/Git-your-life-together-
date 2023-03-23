@@ -53,6 +53,8 @@ These instructions will get you a copy of the project up and running on your loc
 ![signup page](./assets/Signup_Page.png)
 ### New Project Page
 ![new project page](./assets/New_Project.png)
+### Add Step Page
+![add step page](./assets/add_step.png)
 ### Saved Projects Page
 ![projects page](./assets/Saved_Projects.png)
 ### ChatGPT Page with Response
@@ -73,13 +75,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### First Repository (now defunct) Contributions
 ![dead repo](./assets/prevrepocommit.png)
+
 <br>
     
 
 ## Built Using
-GitHub - https://github.com/
-
-Openai API - https://openai.com/blog/openai-api
+Apollo GraphQL - https://www.apollographql.com/
 
 Axios - https://axios-http.com/docs/intro
 
@@ -87,11 +88,17 @@ Bootstrap - https://getbootstrap.com/
 
 Express - https://expressjs.com/
 
-React - https://reactjs.org/
+GitHub - https://github.com/
 
 MongoDB - https://www.mongodb.com/
 
+Mongoose - https://mongoosejs.com/
+
 Node.js - https://nodejs.org/
+
+Openai API - https://openai.com/blog/openai-api
+
+React - https://reactjs.org/
 
 
 <br>    
