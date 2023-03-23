@@ -12,17 +12,18 @@ const StepList = ({ steps = [] }) => {
         <div className="flex-row">
           {steps &&
             steps.map((step) => (
-              <div key={step._id} className="col-12 ">
-                <div className=" ps-5 mt-1 mb-5">
-                  <h5 style={{ color: '#3120E0' }}><strong>- {step.stepText}</strong></h5>
-
+              <div key={step._id} className="row align-items-center ps-5 mt-1 mb-5">
+                <div className='col-6'>
+                  <h5 style={{ color: '#3120E0' }}><strong> {step.stepText}</strong></h5>
                   <h5 >
                     <span style={{ fontSize: '0.825rem' }}>{step.createdAt}
                     </span>
                   </h5>
-                  <hr style={{ color: 'coral', width: '50rem' }}></hr>
-
                 </div>
+                <div className="col-6" >
+                  <button className="btn btn-delete m-5 mx-2">Completed</button>
+                </div>
+                <hr style={{ color: 'coral', width: '70%' }}></hr>
               </div>
             ))}
         </div>
