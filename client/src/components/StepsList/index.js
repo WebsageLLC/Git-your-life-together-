@@ -1,31 +1,28 @@
 import React from 'react';
+import { DELETE_STEP } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
-import { QUERY_PROJECT } from '../../utils/queries';
+import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
+import { useMutation } from '@apollo/client';
 
 const StepList = ({ projectId }) => {
 
   const { loading, data } = useQuery(QUERY_PROJECT, {
-    variables: { projectId },
+    variables: { projectId }
 })
+const [deleteStep, { error }] = useMutation(DELETE_STEP)
+const project = data?.project || {};
+console.log(project)
 
+if (loading) {
+    return <div>Loading...</div>;
+}
+  if (!project.steps.length) {
+    return <h3>No Steps Yet!</h3>;
+  }
 
-
-  const [deleteStep, { error }] = useMutation(DELETE_STEP,
-    {
-      update(cache, { data: {
-        deleteStep } }) {
-        try {
-          cache.writeQuery({
-            query: QUERY_ME,
-            data: { me: deleteStep },
-          });
-        } catch (e) {
-          console.error(e);
-        }
-      },
-    });
 
   const handleDeleteStep = async (project, step) => {
+   
     try {
       const { data } = await deleteStep({
         variables:
@@ -37,12 +34,8 @@ const StepList = ({ projectId }) => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  if (!steps.length) {
-    return <h3>No Steps Yet</h3>;
   }
-
+ 
  
 
   return (
