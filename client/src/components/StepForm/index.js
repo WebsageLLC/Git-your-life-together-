@@ -27,7 +27,9 @@ const StepForm = ({ projectId }) => {
 
       setStepText('');
      
-    refreshPage();
+      document.location.reload();
+
+    // refreshPage();
       
     } catch (err) {
       console.error(err);
@@ -46,10 +48,10 @@ const StepForm = ({ projectId }) => {
   };
 
 
-  function refreshPage() {
-    navigate("/landing", { refresh: true })
-    window.location.reload(false);
-  }
+  // function refreshPage() {
+  //   navigate("/landing", { refresh: true })
+  //   window.location.reload(false);
+  //}
 
   return (
     <div>
