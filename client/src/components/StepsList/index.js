@@ -1,6 +1,38 @@
 import React from 'react';
+import { DELETE_STEP } from '../../utils/mutations';
+import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
+import { useMutation } from '@apollo/client';
 
 const StepList = ({ steps = [] }) => {
+  const [deleteStep, { error }] = useMutation(DELETE_STEP,
+    {
+      update(cache, { data: {
+        deleteStep } }) {
+        try {
+          cache.writeQuery({
+            query: QUERY_ME,
+            data: { me: deleteStep },
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      },
+    });
+
+  const handleDeleteStep = async (project, step) => {
+    try {
+      const { data } = await deleteStep({
+        variables:
+          { 
+            projectId: project._id,
+            stepId: step._id
+          },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (!steps.length) {
     return <h3>No Steps Yet</h3>;
   }
@@ -21,7 +53,7 @@ const StepList = ({ steps = [] }) => {
                   </h5>
                 </div>
                 <div className="col-6" >
-                  <button className="btn btn-delete m-5 mx-2">Completed</button>
+                  <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Complete</button>
                 </div>
                 <hr style={{ color: 'coral', width: '70%' }}></hr>
               </div>
