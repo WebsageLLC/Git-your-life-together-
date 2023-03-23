@@ -13,34 +13,34 @@ const ProjectsList = ({
   showUsername,
 }) => {
 
-  const [removeProject, {error}] = useMutation(REMOVE_PROJECT, 
+  const [removeProject, { error }] = useMutation(REMOVE_PROJECT,
     {
-      update(cache, { data: { 
-        removeProject} }) {
-          try {
-            cache.writeQuery({ 
-                query: QUERY_ME, 
-                data: {me: removeProject}, 
-              });
-            } catch(e) {
-              console.error(e);
-            }
-              },
-            });
-     
-            const handleRemoveProject = async (project) => {
-              try {
-                const { data } = await removeProject({ 
-                  variables: 
-                  {projectId: project._id},
-                });
-                console.log(project)
-              } catch (err) {
-                console.log(project)
-                console.log(project._id)
-                console.error(err);
-              }
-            };
+      update(cache, { data: {
+        removeProject } }) {
+        try {
+          cache.writeQuery({
+            query: QUERY_ME,
+            data: { me: removeProject },
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      },
+    });
+
+  const handleRemoveProject = async (project) => {
+    try {
+      const { data } = await removeProject({
+        variables:
+          { projectId: project._id },
+      });
+      console.log(project)
+    } catch (err) {
+      console.log(project)
+      console.log(project._id)
+      console.error(err);
+    }
+  };
 
 
   return (
