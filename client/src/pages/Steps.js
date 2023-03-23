@@ -3,8 +3,6 @@ import Navbar from '../components/Navbar';
 import StepList from '../components/StepsList';
 import StepForm from '../components/StepForm';
 import { useLocation } from "react-router-dom";
-import { QUERY_PROJECT } from '../utils/queries';
-import { useQuery } from '@apollo/client';
 import AskChatGPT from '../components/AskChatGPT';
 
 
@@ -13,17 +11,7 @@ const Steps = () => {
     const location = useLocation()
 
     const { projectId } = location.state
-    const { loading, data } = useQuery(QUERY_PROJECT, {
-        variable: { projectId: projectId },
-    })
-
-
-    const project = data?.project || {};
-    console.log(project)
-
-    if (loading) {
-        return <div>loading...</div>;
-    }
+    console.log("whole project actually!", projectId)
 
     return (
         <div className="container-fluid">
@@ -43,7 +31,7 @@ const Steps = () => {
                     {/* <h6>Project author: {projectId.projectAuthor}</h6> */}
                 </div>
 
-                <StepList steps={projectId.steps} />
+                <StepList projectId={projectId._id} />
 
                 {/* Modal */}
                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
