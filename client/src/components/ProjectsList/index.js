@@ -47,15 +47,15 @@ const ProjectsList = ({
     <div>
       {showTitle && <h3>{title}</h3>}
 
-      <div className="container " style={{ backgroundColor: 'white', }}>
+      <div className="container " style={{ backgroundColor: 'white' }}>
         <div className="row p-5">
           <h2 className='col-10'>Projects</h2>
         </div>
 
         <div className="row d-flex  align-items-center justify-content-center">
 
-          {projects && 
-           projects.map((project) => (
+          {projects &&
+            projects.map((project) => (
               <div key={project._id} className="row align-items-center">
                 <h2 className="col-6 p-2 ms-5">
                   {showUsername ? (
@@ -79,7 +79,7 @@ const ProjectsList = ({
                 <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveProject(project)} >Delete</button>
 
               </div>
-           
+
             ))}
 
 
