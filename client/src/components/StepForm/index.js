@@ -29,7 +29,6 @@ const StepForm = ({ projectId }) => {
      
       document.location.reload();
 
-    // refreshPage();
       
     } catch (err) {
       console.error(err);
