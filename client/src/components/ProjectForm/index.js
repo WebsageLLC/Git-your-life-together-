@@ -76,7 +76,7 @@ const ProjectForm = () => {
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">Add New Project</h1>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            
+
                             <div className="modal-body">
                                 <form
                                     className="flex-row g-3 justify-center justify-space-between-md align-center"
@@ -121,8 +121,8 @@ const ProjectForm = () => {
 
                                     </div>
                                 </form>
-                                </div>
-                           
+                            </div>
+
                         </div>
                     </div>
 
