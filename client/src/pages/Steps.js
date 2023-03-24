@@ -28,10 +28,10 @@ const Steps = () => {
                             Add New Step
                         </button>
                     </div>
-                    {/* <h6>Project author: {projectId.projectAuthor}</h6> */}
+                   
                 </div>
 
-                <StepList projectId={projectId._id} />
+                <StepList projectId={projectId._id} steps={projectId} />
 
                 {/* Modal */}
                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -52,12 +52,9 @@ const Steps = () => {
 
                 <div>
                     <div className="row p-2 mt-2 text-center">
-                        {/* <h5 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help...</h5> */}
+                
                         <AskChatGPT showNavbar={false} />
-                        {/* <textarea className="form-control col-12 mb-3" aria-label="With textarea"></textarea>
-                                <button type="submit" className="col-12 btn btn-main">
-                                    Ask
-                                </button> */}
+                
                     </div>
 
 

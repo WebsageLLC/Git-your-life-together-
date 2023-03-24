@@ -34,10 +34,10 @@ const ProjectsList = ({
         variables:
           { projectId: project._id },
       });
-      console.log(project)
+      // console.log(project)
     } catch (err) {
-      console.log(project)
-      console.log(project._id)
+      // console.log(project)
+      // console.log(project._id)
       console.error(err);
     }
   };
@@ -87,12 +87,7 @@ const ProjectsList = ({
 
         </div>
 
-        {/* Modal */}
-        {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-      <ProjectForm/>
-
-        </div> */}
+    
       </div >
     </div>
   );
