@@ -8,12 +8,11 @@ import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 
 const ProjectsList = ({
   projects,
-  title,
   showTitle,
   showUsername,
 }) => {
   console.log(projects);
-
+  console.log(projects._id);
   const [removeProject, { error }] = useMutation(REMOVE_PROJECT,
     {
       update(cache, { data: {
@@ -35,7 +34,7 @@ const ProjectsList = ({
         variables:
           { projectId: project._id },
       });
-      // console.log(project)
+      
     } catch (err) {
       // console.log(project)
       // console.log(project._id)
@@ -44,17 +43,63 @@ const ProjectsList = ({
   };
 
 
-  // const [updateProject] = useMutation(UPDATE_PROJECT)
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [projectId, setProjectId] = useState('');
+
+  const [updateProject] = useMutation(UPDATE_PROJECT,
+    {
+      update(cache, { data: {
+        updateProject } }) {
+        try {
+          cache.writeQuery({
+            query: QUERY_ME,
+            data: { me: updateProject },
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      },
+    });
 
 
 
 
 
+  const handleUpdateProject = async (event) => {
+    event.preventDefault();
+   
+    try {
+   
+      const { data } = await updateProject({
+        variables:
+        {
+          projectId: projectId,
+          title: title,
+          description: description
+        },
+      });
+      setTitle('');
+      setDescription('');
+      setProjectId('');
+    } catch (err) {
+    
+      console.error(err);
+    }
+  };
 
-
-
-
-
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'title' && value.length <= 280) {
+        setTitle(value);
+    }
+    if (name === 'description' && value.length <= 280) {
+        setDescription(value);
+    }
+    if (name === 'projectId' && value.length <= 280) {
+      setProjectId(value);
+  }
+};
 
 
 
@@ -91,11 +136,11 @@ const ProjectsList = ({
                       <hr></hr>
                     </>
                   )}
-                </h2>  
-               
+                </h2>
+
                 <button type="button" className="btn btn-main col-1 m-5 mx-2" data-bs-toggle="modal" data-bs-target={`#exampleModal2${project._id}`}  >Edit</button>
-                
-               
+
+
                 <div className="modal fade" id={`exampleModal2${project._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
@@ -106,59 +151,67 @@ const ProjectsList = ({
                       <div className="modal-body">
 
 
-              
-                      <form
-                                    className="flex-row g-3 justify-center justify-space-between-md align-center"
-                                    // onSubmit={handleFormSubmit}
-                                >
-                                  
-                                    <div className="col-12 col-lg-9">
-                                        <label for="projectTitle" className="form-label">Project Title</label>
 
-                                        <input
-                                            name="title"
-                                            placeholder={project.title}
-                                            value={project.title}
-                                            className='form-control'
-                                            // onChange={handleChange}
-                                        ></input>
+                        <form
+                          className="flex-row g-3 justify-center justify-space-between-md align-center"
+                        onSubmit={handleUpdateProject}
+                        >
 
-                                        <label for="projectDescription" className="form-label">Description</label>
+                          <div className="col-12 col-lg-9"
+                          >
+                            <label for="projectTitle" className="form-label"
+                           
+                            >
+                              Project Title</label>
 
-                                        <textarea
-                                            name="description"
-                                            placeholder={project.description}
-                                            value={project.description}
-                                            className="form-control w-100"
-                                            style={{ lineHeight: '1.5', resize: 'vertical' }}
-                                            // onChange={handleChange}
-                                        ></textarea>
+                            <input
+                              name="title"
+                             
+                              value={title}
+                              placeholder= {project.title}
+                              className='form-control'
+                            onChange={handleChange}
+                            ></input>
 
-                                    </div>
+                            <label for="projectDescription" className="form-label">Description</label>
 
-                                    <div className="modal-footer mt-4">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <div className="col-12 col-lg-3">
-                                            <button className="btn btn-main" type="submit" data-bs-dismiss="modal">
-                                                Update Project
-                                            </button>
-                                        </div>
-                                        {error && (
-                                            <div className="col-12 my-3 bg-danger text-white p-3">
-                                                {error.message}
-                                            </div>
-                                        )}
+                            <textarea
+                              name="description"
+                              placeholder= {project.description}
+                              value={description}
+                              className="form-control w-100"
+                              style={{ lineHeight: '1.5', resize: 'vertical' }}
+                            onChange={handleChange}
+                            ></textarea>
 
-                                    </div>
-                                    
-                                </form>
+                          </div>
+
+                          <div className="modal-footer mt-4">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div className="col-12 col-lg-3">
+                              <button className="btn btn-main" type="submit" data-bs-dismiss="modal"
+                               name="projectId"
+                               value={project._id}
+                                onClick={handleChange}>
+                                Update Project
+                              </button>
+                            </div>
+                            {error && (
+                              <div className="col-12 my-3 bg-danger text-white p-3">
+                                {error.message}
+                              </div>
+                            )}
+
+                          </div>
+
+                        </form>
 
                       </div>
                     </div>
                   </div>
                 </div>
 
-               
+
 
 
 
