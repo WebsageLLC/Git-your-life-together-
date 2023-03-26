@@ -193,11 +193,12 @@ let completed = updatedProject.completed;
                   ) : (
                     <>
                       <Link to="/steps" className="" state={{ projectId: project, steps: project.steps }} style={{ textDecoration: 'none', color: 'black' }}>
-
-                        <span className="row" style={{ fontSize: '1rem' }}>
+            
+                        <span  className={project.completed ? "row completed" : "row notCompleted"} style={{ fontSize: '1rem' }}>
                           <h5 className='col-8'>{project.title}</h5>
                           <p className=''> {project.description}</p>
                         </span>
+                        
                       </Link>
                       <hr></hr>
                     </>
