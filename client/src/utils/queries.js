@@ -16,6 +16,7 @@ query Project($projectId: ID!) {
     _id
     description
     projectAuthor
+    completed
     title
     steps {
       _id
@@ -37,6 +38,7 @@ query Users {
       title
       _id
       description
+      completed
       projectAuthor
       steps {
         _id
@@ -60,6 +62,7 @@ export const QUERY_ME = gql`
       title
       _id
       description
+      completed
       projectAuthor
       steps {
         _id

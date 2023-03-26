@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 //import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { REMOVE_PROJECT, UPDATE_PROJECT } from '../../utils/mutations';
+import { REMOVE_PROJECT, UPDATE_PROJECT, COMPLETED_PROJECT } from '../../utils/mutations';
 import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 // import ProjectForm from '../ProjectForm';
 
@@ -12,7 +12,7 @@ const ProjectsList = ({
   showUsername,
 }) => {
   console.log(projects);
-  console.log(projects._id);
+
   const [removeProject, { error }] = useMutation(REMOVE_PROJECT,
     {
       update(cache, { data: {
@@ -34,10 +34,9 @@ const ProjectsList = ({
         variables:
           { projectId: project._id },
       });
-      
+
     } catch (err) {
-      // console.log(project)
-      // console.log(project._id)
+
       console.error(err);
     }
   };
@@ -63,27 +62,24 @@ const ProjectsList = ({
     });
 
 
-
-
-
   const handleUpdateProject = async (event) => {
     event.preventDefault();
-   
+
     try {
-   
+
       const { data } = await updateProject({
         variables:
         {
           projectId: projectId,
           title: title,
-          description: description
+          description: description,
         },
       });
       setTitle('');
       setDescription('');
       setProjectId('');
     } catch (err) {
-    
+
       console.error(err);
     }
   };
@@ -91,15 +87,85 @@ const ProjectsList = ({
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'title' && value.length <= 280) {
-        setTitle(value);
+      setTitle(value);
     }
     if (name === 'description' && value.length <= 280) {
-        setDescription(value);
+      setDescription(value);
     }
     if (name === 'projectId' && value.length <= 280) {
       setProjectId(value);
+    }
+  };
+
+
+  const [completedProject] = useMutation(COMPLETED_PROJECT,
+    {
+      update(cache, { data: {
+        completedProject } }) {
+        try {
+          cache.writeQuery({
+            query: QUERY_ME,
+            data: { me: completedProject },
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      },
+    });
+
+  const handleCompletedProject = async (updatedProject) => {
+  
+    try {
+console.log("LINE 121!!!!!")
+console.log(updatedProject._id)
+console.log(updatedProject.completed)
+let projectId = updatedProject._id;
+let completed = updatedProject.completed;
+console.log(completed);
+      const { data } = await completedProject({
+       
+        variables:
+        {
+          projectId: projectId,
+          completed: completed,
+        },
+      });
+    } catch (err) {
+      let projectId = updatedProject._id;
+let completed = updatedProject.completed;
+      console.log(completed)
+      console.log(projectId)
+      console.error(err);
+    }
+  };
+
+  const handleUpdateFalse = (project) => {
+    if( !project.completed){
+      const updatedProject ={
+        ...project,
+        completed: true
+      };
+      console.log(updatedProject)
+       handleCompletedProject(updatedProject)
   }
-};
+  return project
+  };
+
+  const handleUpdateTrue = (project) => {
+    if( project.completed){
+      const updatedProject ={
+        ...project,
+        completed: false
+      };
+      console.log(updatedProject)
+       handleCompletedProject(updatedProject)
+  }
+  return project
+  };
+
+
+
+
 
 
 
@@ -138,7 +204,7 @@ const ProjectsList = ({
                   )}
                 </h2>
 
-                <button type="button" className="btn btn-main col-1 m-5 mx-2" data-bs-toggle="modal" data-bs-target={`#exampleModal2${project._id}`}  >Edit</button>
+                <button type="button" className="btn btn-main col-1 m-5 mx-1" data-bs-toggle="modal" data-bs-target={`#exampleModal2${project._id}`}  >Edit</button>
 
 
                 <div className="modal fade" id={`exampleModal2${project._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,34 +220,34 @@ const ProjectsList = ({
 
                         <form
                           className="flex-row g-3 justify-center justify-space-between-md align-center"
-                        onSubmit={handleUpdateProject}
+                          onSubmit={handleUpdateProject}
                         >
 
                           <div className="col-12 col-lg-9"
                           >
                             <label for="projectTitle" className="form-label"
-                           
+
                             >
                               Project Title</label>
 
                             <input
                               name="title"
-                             
+
                               value={title}
-                              placeholder= {project.title}
+                              placeholder={project.title}
                               className='form-control'
-                            onChange={handleChange}
+                              onChange={handleChange}
                             ></input>
 
                             <label for="projectDescription" className="form-label">Description</label>
 
                             <textarea
                               name="description"
-                              placeholder= {project.description}
+                              placeholder={project.description}
                               value={description}
                               className="form-control w-100"
                               style={{ lineHeight: '1.5', resize: 'vertical' }}
-                            onChange={handleChange}
+                              onChange={handleChange}
                             ></textarea>
 
                           </div>
@@ -190,8 +256,8 @@ const ProjectsList = ({
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <div className="col-12 col-lg-3">
                               <button className="btn btn-main" type="submit" data-bs-dismiss="modal"
-                               name="projectId"
-                               value={project._id}
+                                name="projectId"
+                                value={project._id}
                                 onClick={handleChange}>
                                 Update Project
                               </button>
@@ -201,43 +267,32 @@ const ProjectsList = ({
                                 {error.message}
                               </div>
                             )}
-
                           </div>
-
                         </form>
-
                       </div>
                     </div>
                   </div>
                 </div>
 
+                <button className="btn btn-delete col-1 m-5 mx-1 text-center" onClick={() => handleRemoveProject(project)} >Delete</button>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-                <button className="btn btn-delete col-1 m-5 mx-2" onClick={() => handleRemoveProject(project)} >Delete</button>
+                {project.completed ?
+                  <button className="btn btn-secondary col-1 m-5 mx-2"  onClick={() => {
+                  handleUpdateTrue(project)}}
+                  >Completed: true</button> :
+                  <button className="btn btn-secondary col-1 m-5 mx-2" 
+                  onClick={() => {
+                  handleUpdateFalse(project)}}>
+                  Completed: False</button>}
 
               </div>
-
             ))}
-
-
-
-
         </div>
-
-
       </div >
     </div>
   );

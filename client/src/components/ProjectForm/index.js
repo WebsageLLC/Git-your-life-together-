@@ -39,6 +39,7 @@ const ProjectForm = () => {
                 variables: {
                     title,
                     description,
+                    completed: false,
                     projectAuthor: Auth.getProfile().data.username,
 
                 },

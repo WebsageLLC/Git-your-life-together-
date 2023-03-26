@@ -21,6 +21,10 @@ const projectSchema = new Schema({
         required: true,
         trim: true,
     },
+    completed: {
+        type: Boolean,
+        required: false,
+    },
     steps: [
         {
             stepText: {

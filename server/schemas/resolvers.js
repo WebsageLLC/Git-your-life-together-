@@ -49,16 +49,17 @@ const resolvers = {
 
 
     // need to make sure its the write author
-    addProject: async (parent, { userId, title, description }, context) => {
+    addProject: async (parent, { userId, title, description, completed }, context) => {
       if (context.user) {
         const project = await Project.create({
           title,
           description,
+          completed,
           projectAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
-          // { _id: userId },
+        
           { _id: context.user._id },
           { $addToSet: { projects: project._id } }
         );
@@ -94,10 +95,29 @@ const resolvers = {
         const project = await Project.findByIdAndUpdate(projectId, {
           title: title,
           description: description,
+         
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $set: { title, description } },
+          { new: true }
+        );
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+
+
+    completedProject: async (parent, { projectId, completed }, context) => {
+      if (context.user) {
+        const project = await Project.findByIdAndUpdate(projectId, {
+         
+          completed: completed,
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $set: { completed } },
           { new: true }
         );
         return project;
