@@ -147,3 +147,8 @@ a {
   opacity: 0.6;
 }
 
+.completed {
+  opacity: 50%;
+  /* background: red; */
+}
+
