@@ -14,6 +14,7 @@ const typeDefs = gql`
     title: String
     description: String
     projectAuthor: String
+    completed: Boolean
     steps: [Step]!
   }
 
@@ -37,8 +38,9 @@ type Step {
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject (title: String!, description: String!, projectAuthor: String!): Project
+    addProject (title: String!, description: String!, projectAuthor: String!, completed: Boolean!): Project
     removeProject(projectId: ID!): Project
+    completedProject(projectId: ID!, completed: Boolean!): Project
     updateProject(projectId: ID!, title: String!, description: String!): Project
     addStep (projectId: ID!, stepText: String!, completed: Boolean!): Project
     deleteStep (projectId: ID!, stepId: ID!): Project 
