@@ -142,30 +142,27 @@ const resolvers = {
     },
 
 
-    // update step
+    // update step 
     updateStep: async (parent, { projectId, stepId, stepText, completed }, context) => {
       if (context.user) {
-        const project = await Project.findOneAndUpdate(
-          { _id: projectId },
+        const step = await Project.findOneAndUpdate(
+          //console.log(stepId, projectId),
+          { _id: projectId, "steps._id": stepId },
           { 
-           
-            $addToSet: {
-              steps: { 
-                _id: stepId,
-             stepText: stepText,
-           completed: completed,
-              },
+            $set: {
+              "steps.$.stepText": stepText,
+              "steps.$.completed": completed,
             },
           },
           { runValidators: true, new: true }
         );
-return project;
+return step;
        
-      }
+      }//closes if statement
       throw new AuthenticationError('You need to be logged in!');
-    },
-  },
-};
+    },//closes update step
+  },//closes all mutattions
+};//closes all resolvers
 
 module.exports = resolvers;
 
