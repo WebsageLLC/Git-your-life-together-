@@ -178,11 +178,11 @@ const resolvers = {
         );
 return step;
        
-      }
+      }//closes if statement
       throw new AuthenticationError('You need to be logged in!');
-    },
-  },
-};
+    },//closes update step
+  },//closes all mutattions
+};//closes all resolvers
 
 module.exports = resolvers;
 
