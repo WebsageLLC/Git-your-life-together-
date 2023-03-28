@@ -134,6 +134,26 @@ mutation UpdateStep($projectId: ID!, $stepId: ID!, $stepText: String!) {
 }
 `;
 
+export const COMPLETED_STEP = gql`
+mutation CompletedStep($projectId: ID!, $completed: Boolean!, $stepId: ID!) {
+  completedStep(projectId: $projectId, completed: $completed, stepId: $stepId) {
+    _id
+    description
+    title
+    completed
+    projectAuthor
+    steps {
+      stepText
+      createdAt
+      completed
+      _id
+    }
+  }
+}
+`;
+
+
+
 export const DELETE_STEP = gql`
 mutation Mutation($projectId: ID!, $stepId: ID!) {
   deleteStep(projectId: $projectId, stepId: $stepId) {
