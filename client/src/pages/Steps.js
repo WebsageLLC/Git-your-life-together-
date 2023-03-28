@@ -28,7 +28,7 @@ const Steps = () => {
                             Add New Step
                         </button>
                     </div>
-                   
+                      
                 </div>
 
                 <StepList projectId={projectId._id} steps={projectId} />
