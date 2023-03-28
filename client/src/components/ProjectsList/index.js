@@ -215,6 +215,7 @@ let completed = updatedProject.completed;
                         <h1 className="modal-title fs-5" id="exampleModalLabel">Update Your Project</h1>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
+                      
                       <div className="modal-body">
 
 

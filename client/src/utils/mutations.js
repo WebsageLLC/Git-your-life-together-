@@ -117,8 +117,8 @@ mutation($projectId: ID!, $stepText: String!, $completed: Boolean!) {
 `;
 
 export const UPDATE_STEP = gql`
-mutation UpdateStep($projectId: ID!, $stepId: ID!, $stepText: String!, $completed: Boolean!) {
-  updateStep(projectId: $projectId, stepId: $stepId, stepText: $stepText, completed: $completed) {
+mutation UpdateStep($projectId: ID!, $stepId: ID!, $stepText: String!) {
+  updateStep(projectId: $projectId, stepId: $stepId, stepText: $stepText) {
     _id
     description
     completed

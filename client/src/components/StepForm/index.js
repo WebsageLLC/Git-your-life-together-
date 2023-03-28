@@ -74,7 +74,7 @@ const StepForm = ({ projectId }) => {
               </div>
 
               <div className="modal-footer mt-4">
-                <button type="submit" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                
                 <button type="submit" className="btn btn-main">Save Step</button>
               </div>
             </form>

@@ -163,23 +163,20 @@ const resolvers = {
 
 
     // update step
-    updateStep: async (parent, { projectId, stepId, stepText, completed }, context) => {
+    updateStep: async (parent, { projectId, stepId, stepText }, context) => {
       if (context.user) {
-        const project = await Project.findOneAndUpdate(
-          { _id: projectId },
+        const step = await Project.findOneAndUpdate(
+          { _id: projectId, "steps._id": stepId },
           { 
            
-            $addToSet: {
-              steps: { 
-                _id: stepId,
-             stepText: stepText,
-           completed: completed,
-              },
+            $set: {
+              "steps.$.stepText": stepText,
+             
             },
           },
           { runValidators: true, new: true }
         );
-return project;
+return step;
        
       }
       throw new AuthenticationError('You need to be logged in!');
