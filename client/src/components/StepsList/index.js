@@ -1,5 +1,6 @@
 import React from 'react';
-import { DELETE_STEP } from '../../utils/mutations';
+import { useState } from 'react';
+import { DELETE_STEP, UPDATE_STEP } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 import { useMutation } from '@apollo/client';
@@ -8,7 +9,10 @@ import { useMutation } from '@apollo/client';
 //michael changing delete to update so that complete button doesn't delete, but instead changes boolean value
 
 const StepList = ({ projectId }) => {
- 
+  const [updateStep] = useMutation(UPDATE_STEP)
+
+  const [stepText, setStepText] = useState('');
+  const [stepId, setStepId] = useState('');
 
   const { loading, data } = useQuery(QUERY_PROJECT, {
     variables: { projectId }
@@ -17,7 +21,7 @@ const StepList = ({ projectId }) => {
 
   const project = data?.project || {};
   console.log(project)
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -37,10 +41,53 @@ const StepList = ({ projectId }) => {
         },
       });
     } catch (err) {
-    
+
       console.error(err);
     }
   }
+
+ 
+
+  const handleUpdateStep = async (event) => {
+    event.preventDefault();
+    console.log(project._id)
+    console.log(stepText)
+    console.log(stepId)
+    try {
+      const { data } = await updateStep({
+        variables:
+        {
+          projectId: project._id,
+          stepId: stepId,
+          stepText: stepText,
+        },
+      });
+    } catch (err) {
+
+      console.error(err);
+    }
+  }
+
+
+
+  const handleChange = (event) => {
+    console.log("LINE 73!!")
+    const { name, value } = event.target;
+    if (name === 'stepText' && value.length <= 280) {
+      setStepText(value);
+      console.log(value)
+    }
+    if (name === 'stepId' && value.length <= 280) {
+      setStepId(value);
+      console.log(value)
+    }
+
+  };
+
+
+
+
+
 
 
 
@@ -61,8 +108,67 @@ const StepList = ({ projectId }) => {
                   </h5>
                   <div className="col-6" >
                     <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Complete</button>
+                    <button className="btn btn-main m-5 mx-2" data-bs-toggle="modal" data-bs-target={`#exampleModal2${step._id}`} >Edit</button>
                   </div>
                   <hr style={{ color: 'coral', width: '50rem' }}></hr>
+
+
+
+                  <div className="modal fade" id={`exampleModal2${step._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h1 className="modal-title fs-5" id="exampleModalLabel">Update Your Step</h1>
+                          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                          <form
+                            className="flex-row justify-center justify-space-between-md align-center"
+                            onSubmit={handleUpdateStep}
+                          >
+                            <div className="col-12 col-lg-9">
+                              <textarea
+                                name="stepText"
+                                placeholder={step.stepText}
+                                value={stepText}
+                                className="form-input w-100"
+                                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                                onChange={handleChange}
+                              ></textarea>
+                            </div>
+
+                            <div className="modal-footer mt-4">
+
+                              <button type="submit" className="btn btn-main" data-bs-dismiss="modal"
+                                name="stepId"
+                                value={step._id}
+                                onClick={handleChange}>
+
+                                Save Step</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 </div>
 

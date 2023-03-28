@@ -162,16 +162,16 @@ const resolvers = {
     },
 
 
-    // update step 
-    updateStep: async (parent, { projectId, stepId, stepText, completed }, context) => {
+    // update step
+    updateStep: async (parent, { projectId, stepId, stepText }, context) => {
       if (context.user) {
         const step = await Project.findOneAndUpdate(
-          //console.log(stepId, projectId),
           { _id: projectId, "steps._id": stepId },
           { 
+           
             $set: {
               "steps.$.stepText": stepText,
-              "steps.$.completed": completed,
+             
             },
           },
           { runValidators: true, new: true }
