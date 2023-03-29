@@ -150,7 +150,7 @@ const StepList = ({ projectId }) => {
                     </span>
                   </h5>
                   <div className="col-6" >
-                    <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Complete</button>
+                    <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Delete</button>
                     <button className="btn btn-main m-5 mx-2" data-bs-toggle="modal" data-bs-target={`#exampleModal2${step._id}`} >Edit</button>
 
 
@@ -159,10 +159,10 @@ const StepList = ({ projectId }) => {
                     {step.completed ?
                     <button className="btn btn-secondary m-5 mx-2"  
                     onClick={() => {
-                      handleUpdateTrue(step)}}>Completed: true</button> :
-                  <button className="btn btn-secondary m-5 mx-2"  
+                      handleUpdateTrue(step)}}>Completed</button> :
+                  <button className="btn btn-success m-5 mx-2"  
                   onClick={() => {
-                    handleUpdateFalse(step)}}> Completed: false</button>
+                    handleUpdateFalse(step)}}> Click to Complete </button>
                     }
 
                   </div>
