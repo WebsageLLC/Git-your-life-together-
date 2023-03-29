@@ -63,9 +63,9 @@ const Landing = () => {
   return (
     <div className="container-fluid">
       <Navbar />
-      <div className="row d-flex align-items-center justify-content-center mt-0">
+      {/* <div className="row d-flex align-items-center justify-content-center mt-0">
         <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Project</button>
-      </div>
+      </div> */}
       {user.projects?.length > 0 ?
         (<ProjectsList
           projects={user.projects}
@@ -74,15 +74,16 @@ const Landing = () => {
           showUsername={false}
         />) :
         (
-          <div className="container mt-3" style={{ backgroundColor: 'white', height: '100rem' }}>
+          <div className="container mt-3" style={{ backgroundColor: 'white', height: '55rem' }}>
             <div className="row p-5 text-center">
               <h2>No Projects yet!</h2>
+            </div>
+            <div className="row d-flex align-items-center justify-content-center mt-0">
+              <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Project</button>
             </div>
             <div className='d-flex justify-content-center mt-5'>
               <img className="" src={noProject} alt="Logo" height="500rem" />
             </div>
-
-
 
           </div>
         )
@@ -90,9 +91,9 @@ const Landing = () => {
       }
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-<ProjectForm/>
+        <ProjectForm />
 
-  </div>
+      </div>
     </div>
   );
 };

@@ -114,16 +114,16 @@ const ProjectsList = ({
     });
 
   const handleCompletedProject = async (updatedProject) => {
-  
+
     try {
-console.log("LINE 121!!!!!")
-console.log(updatedProject._id)
-console.log(updatedProject.completed)
-let projectId = updatedProject._id;
-let completed = updatedProject.completed;
-console.log(completed);
+      console.log("LINE 121!!!!!")
+      console.log(updatedProject._id)
+      console.log(updatedProject.completed)
+      let projectId = updatedProject._id;
+      let completed = updatedProject.completed;
+      console.log(completed);
       const { data } = await completedProject({
-       
+
         variables:
         {
           projectId: projectId,
@@ -132,7 +132,7 @@ console.log(completed);
       });
     } catch (err) {
       let projectId = updatedProject._id;
-let completed = updatedProject.completed;
+      let completed = updatedProject.completed;
       console.log(completed)
       console.log(projectId)
       console.error(err);
@@ -140,27 +140,27 @@ let completed = updatedProject.completed;
   };
 
   const handleUpdateFalse = (project) => {
-    if( !project.completed){
-      const updatedProject ={
+    if (!project.completed) {
+      const updatedProject = {
         ...project,
         completed: true
       };
       console.log(updatedProject)
-       handleCompletedProject(updatedProject)
-  }
-  return project
+      handleCompletedProject(updatedProject)
+    }
+    return project
   };
 
   const handleUpdateTrue = (project) => {
-    if( project.completed){
-      const updatedProject ={
+    if (project.completed) {
+      const updatedProject = {
         ...project,
         completed: false
       };
       console.log(updatedProject)
-       handleCompletedProject(updatedProject)
-  }
-  return project
+      handleCompletedProject(updatedProject)
+    }
+    return project
   };
 
 
@@ -179,34 +179,36 @@ let completed = updatedProject.completed;
       <div className="container " style={{ backgroundColor: 'white' }}>
         <div className="row p-5">
           <h2 className='col-10'>Projects</h2>
+
+          <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Project</button>
+
         </div>
 
-        <div className="row d-flex  align-items-center justify-content-center">
+        <div className="row d-flex align-items-center justify-content-center">
 
           {projects &&
             projects.map((project) => (
               <div key={project._id} className="row align-items-center">
-                <h2 className="col-6 p-2 ms-5">
+                <h2 className="col-8 p-2 ms-5">
                   {showUsername ? (
                     <p>No projects to display</p>
 
                   ) : (
                     <>
                       <Link to="/steps" className="" state={{ projectId: project, steps: project.steps }} style={{ textDecoration: 'none', color: 'black' }}>
-            
-                        <span  className={project.completed ? "row completed" : "row notCompleted"} style={{ fontSize: '1rem' }}>
+
+                        <span className={project.completed ? "row completed" : "row notCompleted"} style={{ fontSize: '1rem' }}>
                           <h5 className='col-8'>{project.title}</h5>
-                          <p className=''> {project.description}</p>
+                          <p className='mb-1'> {project.description}</p>
                         </span>
-                        
+
                       </Link>
-                      <hr></hr>
+
                     </>
                   )}
                 </h2>
 
                 <button type="button" className="btn btn-main col-1 m-5 mx-1" data-bs-toggle="modal" data-bs-target={`#exampleModal2${project._id}`}  >Edit</button>
-
 
                 <div className="modal fade" id={`exampleModal2${project._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered">
@@ -215,17 +217,15 @@ let completed = updatedProject.completed;
                         <h1 className="modal-title fs-5" id="exampleModalLabel">Update Your Project</h1>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
-                      
+
                       <div className="modal-body">
-
-
 
                         <form
                           className="flex-row g-3 justify-center justify-space-between-md align-center"
                           onSubmit={handleUpdateProject}
                         >
 
-                          <div className="col-12 col-lg-9"
+                          <div className="col-12"
                           >
                             <label for="projectTitle" className="form-label"
 
@@ -254,9 +254,9 @@ let completed = updatedProject.completed;
 
                           </div>
 
-                          <div className="modal-footer mt-4">
+                          <div className="modal-footer col-12 mt-4">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <div className="col-12 col-lg-3">
+                            <div className="">
                               <button className="btn btn-main" type="submit" data-bs-dismiss="modal"
                                 name="projectId"
                                 value={project._id}
@@ -279,20 +279,18 @@ let completed = updatedProject.completed;
                 <button className="btn btn-delete col-1 m-5 mx-1 text-center" onClick={() => handleRemoveProject(project)} >Delete</button>
 
 
-
-
-
-
                 {project.completed ?
-                  <button className="btn btn-secondary col-1 m-5 mx-2"  onClick={() => {
-                  handleUpdateTrue(project)}}
-                  >Completed: true</button> :
-                  <button className="btn btn-secondary col-1 m-5 mx-2" 
-                  onClick={() => {
-                  handleUpdateFalse(project)}}>
-                  Completed: False</button>}
-
+                  <button className="btn btn-secondary col-1 m-5 mx-2" onClick={() => {
+                    handleUpdateTrue(project)
+                  }}
+                  >Completed</button> :
+                  <button className="btn btn-success col-1 m-5 mx-2"
+                    onClick={() => {
+                      handleUpdateFalse(project)
+                    }}>
+                    Complete</button>}
               </div>
+
             ))}
         </div>
       </div >
