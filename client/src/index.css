@@ -1,9 +1,15 @@
-#root, html, body {
+#root,
+html,
+body {
   min-height: 100%;
   box-sizing: border-box;
   position: relative;
   margin: 0;
-  }
+}
+
+hr {
+  border-bottom: 'solid 5px #21E1E1' !important;
+}
 
 #grad {
   height: 1000px;
@@ -151,4 +157,3 @@ a {
   opacity: 50%;
 
 }
-

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar';
 
-function AskChatGPT({showNavbar = true }) {
+function AskChatGPT({ showNavbar = true }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
 
@@ -18,11 +18,11 @@ function AskChatGPT({showNavbar = true }) {
       console.log(error);
     }
   };
- 
+
   return (
     <div className="container-fluid">
       {showNavbar && <Navbar />}
-      <div className="container mt-3" style={{ backgroundColor: 'white', height: '45rem' }}>
+      <div className="container mt-3" style={{ backgroundColor: 'white' }}>
         <div className="row p-5 text-center">
           <h4 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help.</h4>
           <h6 className="col-12 mb-3" id="helpChatGPT">(Be patient, this can take up to 10 seconds.)</h6>
@@ -42,7 +42,7 @@ function AskChatGPT({showNavbar = true }) {
             <div className="col-12 mt-3">
               <pre className="response" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>{response}</pre>
             </div>
-  }
+          }
         </div>
       </div>
 

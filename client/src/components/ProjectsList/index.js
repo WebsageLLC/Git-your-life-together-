@@ -184,12 +184,12 @@ const ProjectsList = ({
 
         </div>
 
-        <div className="row d-flex  align-items-center justify-content-center">
+        <div className="row d-flex align-items-center justify-content-center">
 
           {projects &&
             projects.map((project) => (
               <div key={project._id} className="row align-items-center">
-                <h2 className="col-6 p-2 ms-5">
+                <h2 className="col-8 p-2 ms-5">
                   {showUsername ? (
                     <p>No projects to display</p>
 
@@ -199,7 +199,7 @@ const ProjectsList = ({
 
                         <span className={project.completed ? "row completed" : "row notCompleted"} style={{ fontSize: '1rem' }}>
                           <h5 className='col-8'>{project.title}</h5>
-                          <p className=''> {project.description}</p>
+                          <p className='mb-1'> {project.description}</p>
                         </span>
 
                       </Link>
@@ -209,7 +209,6 @@ const ProjectsList = ({
                 </h2>
 
                 <button type="button" className="btn btn-main col-1 m-5 mx-1" data-bs-toggle="modal" data-bs-target={`#exampleModal2${project._id}`}  >Edit</button>
-
 
                 <div className="modal fade" id={`exampleModal2${project._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered">
@@ -221,14 +220,12 @@ const ProjectsList = ({
 
                       <div className="modal-body">
 
-
-
                         <form
                           className="flex-row g-3 justify-center justify-space-between-md align-center"
                           onSubmit={handleUpdateProject}
                         >
 
-                          <div className="col-12 col-lg-9"
+                          <div className="col-12"
                           >
                             <label for="projectTitle" className="form-label"
 
@@ -257,9 +254,9 @@ const ProjectsList = ({
 
                           </div>
 
-                          <div className="modal-footer mt-4">
+                          <div className="modal-footer col-12 mt-4">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <div className="col-12 col-lg-3">
+                            <div className="">
                               <button className="btn btn-main" type="submit" data-bs-dismiss="modal"
                                 name="projectId"
                                 value={project._id}
@@ -282,10 +279,6 @@ const ProjectsList = ({
                 <button className="btn btn-delete col-1 m-5 mx-1 text-center" onClick={() => handleRemoveProject(project)} >Delete</button>
 
 
-
-
-
-
                 {project.completed ?
                   <button className="btn btn-secondary col-1 m-5 mx-2" onClick={() => {
                     handleUpdateTrue(project)
@@ -296,8 +289,8 @@ const ProjectsList = ({
                       handleUpdateFalse(project)
                     }}>
                     Complete</button>}
-
               </div>
+
             ))}
         </div>
       </div >
