@@ -78,23 +78,23 @@ const StepList = ({ projectId }) => {
   };
 
 
- 
+
   const handleCompletedStep = async (updatedStep) => {
-   
+
     console.log(updatedStep)
     console.log(project._id)
     console.log(updatedStep.completed)
     console.log(updatedStep._id)
-    let stepId= updatedStep._id;
-    let completed= updatedStep.completed;
-    try { 
+    let stepId = updatedStep._id;
+    let completed = updatedStep.completed;
+    try {
       const { data } = await completedStep({
-      
+
         variables:
         {
           projectId: project._id,
           stepId: stepId,
-         completed: completed
+          completed: completed
         },
       });
     } catch (err) {
@@ -104,27 +104,27 @@ const StepList = ({ projectId }) => {
   }
 
   const handleUpdateFalse = (step) => {
-    if( !step.completed){
-      const updatedStep ={
+    if (!step.completed) {
+      const updatedStep = {
         ...step,
         completed: true
       };
       console.log(updatedStep)
-       handleCompletedStep(updatedStep)
-  }
-  return step
+      handleCompletedStep(updatedStep)
+    }
+    return step
   };
 
   const handleUpdateTrue = (step) => {
-    if( step.completed){
-      const updatedStep ={
+    if (step.completed) {
+      const updatedStep = {
         ...step,
         completed: false
       };
       console.log(updatedStep)
-       handleCompletedStep(updatedStep)
-  }
-  return step
+      handleCompletedStep(updatedStep)
+    }
+    return step
   };
 
 
@@ -140,16 +140,16 @@ const StepList = ({ projectId }) => {
         <div className="flex-row">
           {project.steps &&
             project.steps.map((step) => (
-              <div key={step._id} id={step._id} className="col-12 ">
+              <div key={step._id} id={step._id} >
                 <div className={step.completed ?
-                " completed ps-5 mt-1 mb-5" : " notcompleted ps-5 mt-1 mb-5"}> 
-                  <h5 style={{ color: '#3120E0' }}><strong>- {step.stepText}</strong></h5>
+                  " completed ps-5 mt-1 mb-5 row" : " notcompleted ps-5 mt-1 mb-5 row"}>
+                  <h5 className="col-4" style={{ color: '#3120E0' }}><strong>- {step.stepText}</strong></h5>
 
                   <h5 >
                     <span style={{ fontSize: '0.825rem' }}>{step.createdAt}
                     </span>
                   </h5>
-                  <div className="col-6" >
+                  <div className="col-12" >
                     <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Delete</button>
                     <button className="btn btn-main m-5 mx-2" data-bs-toggle="modal" data-bs-target={`#exampleModal2${step._id}`} >Edit</button>
 
@@ -157,17 +157,17 @@ const StepList = ({ projectId }) => {
 
 
                     {step.completed ?
-                    <button className="btn btn-secondary m-5 mx-2"  
-                    onClick={() => {
-                      handleUpdateTrue(step)}}>Completed</button> :
-                  <button className="btn btn-success m-5 mx-2"  
-                  onClick={() => {
-                    handleUpdateFalse(step)}}> Click to Complete </button>
+                      <button className="btn btn-secondary m-5 mx-2"
+                        onClick={() => {
+                          handleUpdateTrue(step)
+                        }}>Completed</button> :
+                      <button className="btn btn-success m-5 mx-2"
+                        onClick={() => {
+                          handleUpdateFalse(step)
+                        }}> Click to Complete </button>
                     }
 
                   </div>
-                  <hr style={{ color: 'coral', width: '50rem' }}></hr>
-
 
 
                   <div className="modal fade" id={`exampleModal2${step._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -217,7 +217,7 @@ const StepList = ({ projectId }) => {
 
 
 
-                
+
 
 
 
@@ -236,7 +236,7 @@ const StepList = ({ projectId }) => {
 };
 
 // const StepList = ({ projectId }) => {
- 
+
 
 //   const { loading, data } = useQuery(QUERY_PROJECT, {
 //     variables: { projectId }
@@ -245,7 +245,7 @@ const StepList = ({ projectId }) => {
 
 //   const project = data?.project || {};
 //   console.log(project)
-  
+
 //   if (loading) {
 //     return <div>Loading...</div>;
 //   }
@@ -265,7 +265,7 @@ const StepList = ({ projectId }) => {
 //         },
 //       });
 //     } catch (err) {
-    
+
 //       console.error(err);
 //     }
 //   }
