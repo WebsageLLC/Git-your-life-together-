@@ -45,6 +45,7 @@ type Step {
     addStep (projectId: ID!, stepText: String!, completed: Boolean!): Project
     deleteStep (projectId: ID!, stepId: ID!): Project 
     updateStep (projectId: ID!, stepId: ID!, stepText: String!): Project
+    completedStep (projectId: ID!, stepId: ID!, completed: Boolean!): Project
   }`
 ;
 

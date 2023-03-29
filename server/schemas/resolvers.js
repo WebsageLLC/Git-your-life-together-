@@ -180,9 +180,43 @@ return step;
        
       }//closes if statement
       throw new AuthenticationError('You need to be logged in!');
-    },//closes update step
-  },//closes all mutattions
-};//closes all resolvers
+    },
+    // completed step
+    completedStep: async (parent, { projectId, stepId, completed }, context) => {
+      if (context.user) {
+        const step = await Project.findOneAndUpdate(
+          { _id: projectId, "steps._id": stepId },
+          { 
+            $set: {
+              "steps.$.completed": completed,
+            },
+          },
+          { runValidators: true, new: true }
+        );
+return step;
+       
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    // completed step
+    completedStep: async (parent, { projectId, stepId, completed }, context) => {
+      if (context.user) {
+        const step = await Project.findOneAndUpdate(
+          { _id: projectId, "steps._id": stepId },
+          { 
+            $set: {
+              "steps.$.completed": completed,
+            },
+          },
+          { runValidators: true, new: true }
+        );
+return step;
+       
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  },
+};
 
 module.exports = resolvers;
 
