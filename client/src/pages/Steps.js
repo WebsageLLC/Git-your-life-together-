@@ -28,7 +28,7 @@ const Steps = () => {
                             Add New Step
                         </button>
                     </div>
-                      
+
                 </div>
 
                 <StepList projectId={projectId._id} steps={projectId} />
@@ -51,10 +51,10 @@ const Steps = () => {
                 </div>
 
                 <div>
-                    <div className="row p-2 mt-2 text-center">
-                
+                    <div className="row p-2 mt-1 mb-5 text-center" style={{ minHeight: '40rem' }}>
+
                         <AskChatGPT showNavbar={false} />
-                
+
                     </div>
 
 

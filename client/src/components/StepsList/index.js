@@ -135,26 +135,21 @@ const StepList = ({ projectId }) => {
 
   return (
     <>
-      <div className='row ms-5'>
-        <h4 className="row ps-5" > Steps</h4>
-        <div className="flex-row">
+      <div className='container ms-5'>
+        <h4 className="row ps-5" > Steps: </h4>
+        <div className='container'>
           {project.steps &&
             project.steps.map((step) => (
               <div key={step._id} id={step._id} >
                 <div className={step.completed ?
-                  " completed ps-5 mt-1 mb-5 row" : " notcompleted ps-5 mt-1 mb-5 row"}>
-                  <h5 className="col-4" style={{ color: '#3120E0' }}><strong>- {step.stepText}</strong></h5>
-
-                  <h5 >
-                    <span style={{ fontSize: '0.825rem' }}>{step.createdAt}
-                    </span>
-                  </h5>
-                  <div className="col-12" >
-                    <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Delete</button>
+                  " completed ps-5 mb-1 row align-items-center" : " notcompleted ps-5 mb-1 row align-items-center"}>
+                  <div className="col-6 m-0">
+                    <h5 className="m-0" style={{ color: '#3120E0' }}><strong>• {step.stepText}</strong></h5>
+                    <h5 className="m-0"><span style={{ fontSize: '0.825rem' }}>{step.createdAt}</span></h5>
+                  </div>
+                  <div className="col-6" >
                     <button className="btn btn-main m-5 mx-2" data-bs-toggle="modal" data-bs-target={`#exampleModal2${step._id}`} >Edit</button>
-
-
-
+                    <button className="btn btn-delete m-5 mx-2" onClick={() => handleDeleteStep(step)}>Delete</button>
 
                     {step.completed ?
                       <button className="btn btn-secondary m-5 mx-2"
@@ -166,9 +161,7 @@ const StepList = ({ projectId }) => {
                           handleUpdateFalse(step)
                         }}> Click to Complete </button>
                     }
-
                   </div>
-
 
                   <div className="modal fade" id={`exampleModal2${step._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
@@ -206,24 +199,6 @@ const StepList = ({ projectId }) => {
                       </div>
                     </div>
                   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </div>
 

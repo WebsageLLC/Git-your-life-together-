@@ -80,10 +80,10 @@ const ProjectForm = () => {
 
                             <div className="modal-body">
                                 <form
-                                    className="flex-row g-3 justify-center justify-space-between-md align-center"
+                                    className="flex-row"
                                     onSubmit={handleFormSubmit}
                                 >
-                                    <div className="col-12 col-lg-9">
+                                    <div className="col-12">
                                         <label for="projectTitle" className="form-label">Project Title</label>
 
                                         <input
@@ -107,13 +107,13 @@ const ProjectForm = () => {
 
                                     </div>
 
-                                    <div className="modal-footer mt-4">
+                                    <div className="modal-footer col-12 mt-4">
                                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <div className="col-12 col-lg-3">
-                                            <button className="btn btn-main" type="submit" data-bs-dismiss="modal">
-                                                Add Project
-                                            </button>
-                                        </div>
+
+                                        <button className="btn btn-main" type="submit" data-bs-dismiss="modal">
+                                            Add Project
+                                        </button>
+
                                         {error && (
                                             <div className="col-12 my-3 bg-danger text-white p-3">
                                                 {error.message}
