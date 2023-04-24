@@ -155,5 +155,8 @@ a {
 
 .completed {
   opacity: 50%;
+}
 
+a:hover {
+  color: #21E1E1 !important;
 }

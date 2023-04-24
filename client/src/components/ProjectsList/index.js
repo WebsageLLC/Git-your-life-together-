@@ -182,6 +182,7 @@ const ProjectsList = ({
 
           <button type="button" className="btn btn-main col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Project</button>
 
+          <h6 className='col-10' style={{ backgroundColor: 'white' }}>Click a Project to get started</h6>
         </div>
 
         <div className="row d-flex align-items-center justify-content-center">
