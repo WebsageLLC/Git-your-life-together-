@@ -156,10 +156,11 @@ const StepList = ({ projectId }) => {
                         onClick={() => {
                           handleUpdateTrue(step)
                         }}>Completed</button> :
-                      <button className="btn btn-success m-5 mx-2"
-                        onClick={() => {
-                          handleUpdateFalse(step)
-                        }}> Click to Complete </button>
+                        <button className="btn btn-success m-5 mx-2"
+                        onClick={(e) => {
+                          e.target.classList.toggle("completed");
+                          handleUpdateFalse(step);
+                        }}>Click to Complete</button>
                     }
                   </div>
 
