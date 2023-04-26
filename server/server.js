@@ -75,3 +75,5 @@ console.log('server ine 74');
 app.listen(port, () => {
   console.log(`Chatgpt Server running on port ${port}`);
 });
+
+export{port};
