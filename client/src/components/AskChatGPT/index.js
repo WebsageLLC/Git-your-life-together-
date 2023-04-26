@@ -12,7 +12,7 @@ function AskChatGPT({ showNavbar = true }) {
     const data = { prompt };
 
     try {
-      const response = await axios.post("https://git-your-life-together.herokuapp.com/chat", data);
+      const response = await axios.post("http://localhost:3005/chat", data);
       setResponse(response.data);
     } catch (error) {
       console.log(error);
