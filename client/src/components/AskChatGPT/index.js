@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar';
-import {port} from '../../../../server/server'
 
 function AskChatGPT({ showNavbar = true }) {
   const [prompt, setPrompt] = useState("");
@@ -13,7 +12,7 @@ function AskChatGPT({ showNavbar = true }) {
     const data = { prompt };
 
     try {
-      const response = await axios.post("http://localhost:"+port+"/chat", data);
+      const response = await axios.post("http://localhost:8000/chat", data);
       setResponse(response.data);
     } catch (error) {
       console.log(error);

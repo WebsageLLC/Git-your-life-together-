@@ -47,7 +47,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-const port = process.env.port || 3005 || 8000;
+const port = process.env.port || 8000;
 console.log('line 51 declarations')
 require("dotenv").config();
 app.use(bodyParser.json());
@@ -75,5 +75,3 @@ console.log('server ine 74');
 app.listen(port, () => {
   console.log(`Chatgpt Server running on port ${port}`);
 });
-
-export{port};
