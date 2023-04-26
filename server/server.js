@@ -48,6 +48,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const port = 3005;
+console.log('line 51 declarations')
 require("dotenv").config();
 app.use(bodyParser.json());
 app.use(cors());
@@ -70,7 +71,7 @@ app.post("/chat", async (req, res) => {
   res.send(response.data.choices[0].text);
 });
 
-
+console.log('server ine 74');
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
