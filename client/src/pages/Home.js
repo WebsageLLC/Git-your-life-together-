@@ -51,6 +51,14 @@ const Home = () => {
             <img src={happyGuy} width="400rem" className="animate__animated animate__fadeIn" />
           </div>
         </div>
+        <h2 style={{color: 'white' }}>For when your're starting something new.</h2> <br/>
+        <br/>
+        <h4 style={{color: 'white' }}>Whether you're setting a goal or beginning a new project,
+        at home or at work, this is the place to start. 
+        <br/><br/>  Add a name and description of what you're working on then create steps to
+        see it through. <br/><br/>
+        If you're not sure what your next step should be, you can use the 
+        integrated ChatGPT to give you a direction.</h4>
       </div>
 
       </div>
