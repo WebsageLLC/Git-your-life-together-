@@ -51,7 +51,7 @@ const Home = () => {
             <img src={happyGuy} width="400rem" className="animate__animated animate__fadeIn" />
           </div>
         </div>
-        <h2 style={{color: 'white' }}>For when your're starting something new.</h2> <br/>
+        <h2 style={{color: 'white' }}>For when you're starting something new.</h2> <br/>
         <br/>
         <h4 style={{color: 'white' }}>Whether you're setting a goal or beginning a new project,
         at home or at work, this is the place to start. 
