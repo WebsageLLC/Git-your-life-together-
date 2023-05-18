@@ -35,7 +35,7 @@ const ProjectForm = () => {
         event.preventDefault();
 
         try {
-            const { data } = await addProject({
+            await addProject({
                 variables: {
                     title,
                     description,
@@ -84,7 +84,7 @@ const ProjectForm = () => {
                                     onSubmit={handleFormSubmit}
                                 >
                                     <div className="col-12">
-                                        <label for="projectTitle" className="form-label">Project Title</label>
+                                        <label htmlFor="projectTitle" className="form-label">Project Title</label>
 
                                         <input
                                             name="title"
@@ -94,7 +94,7 @@ const ProjectForm = () => {
                                             onChange={handleChange}
                                         ></input>
 
-                                        <label for="projectDescription" className="form-label">Description</label>
+                                        <label htmlFor="projectDescription" className="form-label">Description</label>
 
                                         <textarea
                                             name="description"
