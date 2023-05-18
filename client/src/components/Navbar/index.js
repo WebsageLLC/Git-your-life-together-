@@ -18,10 +18,10 @@ const Navbar = () => {
 
                 <ul className="nav justify-content-end">
                     <li className="nav-item">
-                        <Link to="/"><a className="nav-link active" aria-current="page">My Projects</a></Link>
+                        <Link to="/" className="nav-link active" aria-current="page">My Projects</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/askchatgpt"><a className="nav-link">Ask Chat GPT</a></Link>
+                        <Link to="/askchatgpt" className="nav-link">Ask Chat GPT</Link>
                     </li>
                     <Link to="/"><button className="btn btn-main" type="button" onClick={logout}>Logout</button></Link>
                 </ul>

@@ -48,7 +48,7 @@ const Home = () => {
             </div>
           </div>
           <div className="img-fluid col-md-6">
-            <img src={happyGuy} width="400rem" className="animate__animated animate__fadeIn" />
+            <img src={happyGuy} width="400rem" className="animate__animated animate__fadeIn" alt="happy bearded man with arms raised triumphantly" />
           </div>
         </div>
         <h2 style={{color: 'white' }}>For when you're starting something new.</h2> <br/>
