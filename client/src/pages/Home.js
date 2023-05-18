@@ -48,10 +48,10 @@ const Home = () => {
             </div>
           </div>
           <div className="img-fluid col-md-6">
-            <img src={happyGuy} width="400rem" className="animate__animated animate__fadeIn" />
+            <img src={happyGuy} width="400rem" className="animate__animated animate__fadeIn" alt="happy bearded man with arms raised triumphantly" />
           </div>
         </div>
-        <h2 style={{color: 'white' }}>For when your're starting something new.</h2> <br/>
+        <h2 style={{color: 'white' }}>For when you're starting something new.</h2> <br/>
         <br/>
         <h4 style={{color: 'white' }}>Whether you're setting a goal or beginning a new project,
         at home or at work, this is the place to start. 

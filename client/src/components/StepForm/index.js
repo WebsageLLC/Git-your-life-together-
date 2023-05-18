@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link, Navigate, redirect, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_STEP } from '../../utils/mutations';
-import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const StepForm = ({ projectId }) => {
@@ -10,14 +9,13 @@ const StepForm = ({ projectId }) => {
   const [stepText, setStepText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addOneMoreStep, { error }] = useMutation(ADD_STEP);
-  const navigate = useNavigate()
+  const [addOneMoreStep] = useMutation(ADD_STEP);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("HELLO")
     try {
 
-      const { data } = await addOneMoreStep({
+      await addOneMoreStep({
         variables: {
           projectId,
           stepText,
@@ -42,6 +40,7 @@ const StepForm = ({ projectId }) => {
     if (name === 'stepText' && value.length <= 280) {
       setStepText(value);
       setCharacterCount(value.length);
+      console.log(characterCount); // Placed just to clear the unused var error in console.
     }
     
   };

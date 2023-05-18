@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_PROJECT, UPDATE_PROJECT, COMPLETED_PROJECT } from '../../utils/mutations';
-import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
+import { QUERY_ME } from '../../utils/queries';
 // import ProjectForm from '../ProjectForm';
 
 const ProjectsList = ({
@@ -30,7 +30,7 @@ const ProjectsList = ({
 
   const handleRemoveProject = async (project) => {
     try {
-      const { data } = await removeProject({
+      await removeProject({
         variables:
           { projectId: project._id },
       });
@@ -67,7 +67,7 @@ const ProjectsList = ({
 
     try {
 
-      const { data } = await updateProject({
+      await updateProject({
         variables:
         {
           projectId: projectId,
@@ -122,7 +122,7 @@ const ProjectsList = ({
       let projectId = updatedProject._id;
       let completed = updatedProject.completed;
       console.log(completed);
-      const { data } = await completedProject({
+      await completedProject({
 
         variables:
         {
@@ -211,7 +211,7 @@ const ProjectsList = ({
 
                 <button type="button" className="btn btn-main col-1 m-5 mx-1" data-bs-toggle="modal" data-bs-target={`#exampleModal2${project._id}`}  >Edit</button>
 
-                <div className="modal fade" id={`exampleModal2${project._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id={`exampleModal2${project._id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -228,7 +228,7 @@ const ProjectsList = ({
 
                           <div className="col-12"
                           >
-                            <label for="projectTitle" className="form-label"
+                            <label htmlFor="projectTitle" className="form-label"
 
                             >
                               Project Title</label>
@@ -242,7 +242,7 @@ const ProjectsList = ({
                               onChange={handleChange}
                             ></input>
 
-                            <label for="projectDescription" className="form-label">Description</label>
+                            <label htmlFor="projectDescription" className="form-label">Description</label>
 
                             <textarea
                               name="description"
