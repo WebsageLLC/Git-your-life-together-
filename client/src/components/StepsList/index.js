@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { DELETE_STEP, UPDATE_STEP, COMPLETED_STEP } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
-import { QUERY_PROJECT, QUERY_ME } from '../../utils/queries';
+import { QUERY_PROJECT} from '../../utils/queries';
 import { useMutation } from '@apollo/client';
+import kid from '../../assets/kid.png';
 
 //full copy of UNEDITED code at bottom
 //michael changing delete to update so that complete button doesn't delete, but instead changes boolean value
@@ -18,7 +19,7 @@ const StepList = ({ projectId }) => {
   const { loading, data } = useQuery(QUERY_PROJECT, {
     variables: { projectId }
   })
-  const [deleteStep, { error }] = useMutation(DELETE_STEP)
+  const [deleteStep] = useMutation(DELETE_STEP)
 
   const project = data?.project || {};
   console.log(project)
@@ -27,13 +28,21 @@ const StepList = ({ projectId }) => {
     return <div>Loading...</div>;
   }
   if (!project.steps.length) {
-    return <h3>No Steps Yet!</h3>;
+    return (
+      <>
+      <div className='d-flex justify-content-center mt-5'>
+      <h3>No Steps Yet!</h3>
+      <img className="" src={kid} alt="Logo" height="300rem" />
+    </div>
+    
+    </>
+    );
   }
 
 
   const handleDeleteStep = async (projectId) => {
     try {
-      const { data } = await deleteStep({
+      await deleteStep({
         variables:
         {
           projectId: project._id,
@@ -50,7 +59,7 @@ const StepList = ({ projectId }) => {
     console.log(stepText)
     console.log(stepId)
     try {
-      const { data } = await updateStep({
+      await updateStep({
         variables:
         {
           projectId: project._id,
@@ -88,7 +97,7 @@ const StepList = ({ projectId }) => {
     let stepId = updatedStep._id;
     let completed = updatedStep.completed;
     try {
-      const { data } = await completedStep({
+      await completedStep({
 
         variables:
         {
@@ -164,7 +173,7 @@ const StepList = ({ projectId }) => {
                     }
                   </div>
 
-                  <div className="modal fade" id={`exampleModal2${step._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="modal fade" id={`exampleModal2${step._id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                       <div className="modal-content">
                         <div className="modal-header">

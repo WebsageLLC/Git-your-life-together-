@@ -48,13 +48,14 @@ const startApolloServer = async (typeDefs, resolvers) => {
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-const port = 3005;
+const port = process.env.port || 3005;
+console.log('line 51 declarations')
 require("dotenv").config();
 app.use(bodyParser.json());
 app.use(cors());
 
 const openaiApi = axios.create({
-  baseURL: "https://api.openai.com/v1/",
+  baseURL: "https://api.openai.com/v1/chat",
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
@@ -71,7 +72,7 @@ app.post("/chat", async (req, res) => {
   res.send(response.data.choices[0].text);
 });
 
-
+console.log('server ine 74');
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Chatgpt Server running on port ${port}`);
 });
