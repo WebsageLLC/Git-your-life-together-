@@ -46,11 +46,6 @@ const StepForm = ({ projectId }) => {
   };
 
 
-  // function refreshPage() {
-  //   navigate("/landing", { refresh: true })
-  //   window.location.reload(false);
-  //}
-
   return (
     <div>
       {Auth.loggedIn() ? (

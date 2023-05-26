@@ -31,8 +31,13 @@ const StepList = ({ projectId }) => {
     return (
       <>
       <div className='d-flex justify-content-center mt-5'>
-      <h3>No Steps Yet!</h3>
-      <img className="" src={kid} alt="Logo" height="300rem" />
+        <div className='container'>
+
+        
+      <h3 className="text-center">No Steps Yet!</h3>
+      <br />
+      <img className="d-flex mx-auto" src={kid} alt="Logo" height="300rem" />
+      </div>
     </div>
     
     </>
