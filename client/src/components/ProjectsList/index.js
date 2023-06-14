@@ -162,15 +162,7 @@ const ProjectsList = ({
     }
     return project
   };
-
-
-
-
-
-
-
-
-
+  
 
   return (
     <div>
@@ -195,7 +187,7 @@ const ProjectsList = ({
                     <p>No projects to display</p>
 
                   ) : (
-                    <>
+                    <div className="py-3 px-5 border border-primary rounded-pill shadow-lg">
                       <Link to="/steps" className="" state={{ projectId: project, steps: project.steps }} style={{ textDecoration: 'none', color: 'black' }}>
 
                         <span className={project.completed ? "row completed" : "row notCompleted"} style={{ fontSize: '1rem' }}>
@@ -205,7 +197,7 @@ const ProjectsList = ({
 
                       </Link>
 
-                    </>
+                    </div>
                   )}
                 </h2>
 
