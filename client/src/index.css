@@ -158,8 +158,7 @@ a {
 .btn.btn-main.m-5.mx-2.completed
  {
   display: flex;
-  width: 100%;
-  height: 100%;
+  height: inherit;
   top: 0;
   left: 0;
   padding-right: 2rem;

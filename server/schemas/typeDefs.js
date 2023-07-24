@@ -23,6 +23,14 @@ type Step {
   stepText: String
   completed: Boolean
   createdAt: String
+  substeps: [Substep]!
+}
+
+type Substep {
+  _id: ID
+  ssText: String
+  completed: Boolean
+  createdAt: String
 }
 
   type Auth {
@@ -33,6 +41,7 @@ type Step {
     users: [User]
     user(userId: ID!): User
     project (projectId: ID!): Project
+    step(stepId: ID!): Step
     me: User
   }
   type Mutation {
@@ -46,6 +55,7 @@ type Step {
     deleteStep (projectId: ID!, stepId: ID!): Project 
     updateStep (projectId: ID!, stepId: ID!, stepText: String!): Project
     completedStep (projectId: ID!, stepId: ID!, completed: Boolean!): Project
+    addSubstep(ssText: String!, stepId: ID!, completed: Boolean!): Substep
   }`
 ;
 

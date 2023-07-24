@@ -1,19 +1,27 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Project } = require('../models');
+const { User, Project, Step, Substep } = require('../models');
+const mongoose = require('mongoose');
 
 const { signToken } = require('../utils/auth');
+const { Error } = require('mongoose');
 
 const resolvers = {
   Query: {
     users: async () => {
       return User.find().populate('projects')
     },
+    //change users to show orgs in the future
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('projects');
     },
+    //add orgs to show projects
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId }).populate('steps')
+      return Project.findOne({ _id: projectId }).populate('steps');
     },
+    step: async (parent, { stepId }) => {
+      return Step.findOne({ _id: stepId }).populate('substeps');
+    },
+    //also chage to orgs
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('projects');
@@ -48,7 +56,7 @@ const resolvers = {
     },
 
 
-    // need to make sure its the write author
+    // need to make sure its the right author
     addProject: async (parent, { userId, title, description, completed }, context) => {
       if (context.user) {
         const project = await Project.create({
@@ -126,20 +134,43 @@ const resolvers = {
     },
 
     // add step working as well now
-    addStep: async (parent, { projectId, completed, stepText }, context) => {
+    addStep: async (parent, { projectId,stepId, completed, stepText }, context) => {
       if (context.user) {
-        return Project.findOneAndUpdate(
-          { _id: projectId },
-          {
-            $addToSet: {
-              steps: { stepText, completed, stepAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-          }
+        try{
+        const step = await Step.create({
+          stepText, completed, stepAuthor: context.user.username
+        });
+
+       const updatedProject= await Project.findByIdAndUpdate(
+        projectId ,
+          { $addToSet: { steps: step._id } },
+          { new: true }
+          
         );
+        
+        console.log("step._id", step._id);
+                console.log("projectId", projectId);
+                console.log(updatedProject)
+        return updatedProject;
+
+      } catch (error) {
+        // Handle any potential errors here.
+        console.error(error);
+        throw error;
       }
+      }
+        // return Project.findOneAndUpdate(
+        //   { _id: projectId },
+        //   {
+        //     $addToSet: {
+        //       steps: { stepId,stepText, completed, stepAuthor: context.user.username },
+        //     },
+        //   },
+        //   {
+        //     new: true,
+        //   }
+        // );
+      
       throw new AuthenticationError('You need to be logged in!');
     },
 
@@ -184,37 +215,106 @@ return step;
     // completed step
     completedStep: async (parent, { projectId, stepId, completed }, context) => {
       if (context.user) {
-        const step = await Project.findOneAndUpdate(
-          { _id: projectId, "steps._id": stepId },
-          { 
-            $set: {
-              "steps.$.completed": completed,
-            },
-          },
-          { runValidators: true, new: true }
-        );
-return step;
+        const step = await Step.findByIdAndUpdate(stepId, {
+         
+          completed: completed,
+        });
+ 
+        return step;
+      
        
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     // completed step
-    completedStep: async (parent, { projectId, stepId, completed }, context) => {
-      if (context.user) {
-        const step = await Project.findOneAndUpdate(
-          { _id: projectId, "steps._id": stepId },
-          { 
-            $set: {
-              "steps.$.completed": completed,
-            },
-          },
-          { runValidators: true, new: true }
-        );
-return step;
+//     completedStep: async (parent, { projectId, stepId, completed }, context) => {
+//       if (context.user) {
+//         const step = await Project.findOneAndUpdate(
+//           { _id: projectId, "steps._id": stepId },
+//           { 
+//             $set: {
+//               "steps.$.completed": completed,
+//             },
+//           },
+//           { runValidators: true, new: true }
+//         );
+// return step;
        
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+
+  
+    //   if (context.user) {
+    //     try {
+    //       const updatedStep = await Step.findByIdAndUpdate(
+    //         stepId, // Use the correct field to find the Step document.
+    //         {
+    //           $addToSet: {
+    //             substeps: { ssText, completed },
+    //           },
+    //         },
+    //         {
+    //           new: true,
+    //         }
+    //       );
+  
+    //       console.log(stepId); // You can log stepId here if needed.
+    //       console.log(updatedStep);
+    //       return updatedStep;
+    //     } catch (error) {
+    //       // Handle any potential errors here.
+    //       console.error(error);
+    //       throw error;
+    //     }
+    //   } else {
+    //     throw new AuthenticationError('You need to be logged in!');
+    //   }
+    // },
+    
+          addSubstep: async (parent, { ssText, stepId, completed }, context) => {
+            if (context.user) {
+              try {
+                const substep = await Substep.create({
+                  ssText,
+                  completed,
+                });
+        
+                console.log('ADDSUB 226');
+                console.log(stepId);
+        
+                // Update the Step model
+                const updatedStep = await Step.findByIdAndUpdate(
+                  stepId,
+                  { $addToSet: { substeps: substep._id } },
+                  { new: true }
+                );
+        
+                console.log("substep._id", substep._id);
+                console.log("stepId", stepId);
+                console.log(updatedStep);
+        
+                // Fetch the updated project with populated substeps
+                // const updatedProject = await Project.findById(updatedStep.project).populate({
+                //   path: 'steps',
+                //   populate: { path: 'substeps' },
+                // });
+        
+                return updatedStep;
+              } catch (error) {
+                // Handle any potential errors here.
+                console.error(error);
+                throw error;
+              }
+            } else {
+              throw new AuthenticationError('You need to be logged in!');
+            }
+        
+          },
+        
+  
+    
+    
   },
 };
 

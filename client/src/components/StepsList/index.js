@@ -155,9 +155,9 @@ const StepList = ({ projectId }) => {
           {project.steps &&
             project.steps.map((step) => (
               <div key={step._id} id={step._id} >
-                <div className={step.completed ?
-                  " completed ps-5 mb-1 row align-items-center" : " notcompleted ps-5 mb-1 row align-items-center"}>
-                  <div className="col-6 m-0">
+                <div className= "ps-5 mb-1 row align-items-center">
+                  <div className={step.completed ? "row completed col-6 py-3 px-5 border border-primary rounded-pill shadow-lg" : 
+                  "row notcompleted col-6 py-3 px-5 border border-primary rounded-pill shadow-lg"}>
                     <h5 className="m-0" style={{ color: '#3120E0' }}><strong>• {step.stepText}</strong></h5>
                     <h5 className="m-0"><span style={{ fontSize: '0.825rem' }}>{step.createdAt}</span></h5>
                   </div>
@@ -174,7 +174,7 @@ const StepList = ({ projectId }) => {
                         onClick={(e) => {
                           e.target.classList.toggle("completed");
                           handleUpdateFalse(step);
-                        }}>Click to Complete</button>
+                        }}>Complete</button>
                     }
                   </div>
 
