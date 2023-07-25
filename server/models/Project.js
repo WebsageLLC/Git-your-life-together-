@@ -25,25 +25,47 @@ const projectSchema = new Schema({
         type: Boolean,
         required: false,
     },
-    steps: [
-        {
-            stepText: {
-                type: String,
-                required: true,
-                minlength: 1,
-                maxlength: 280, 
-            },
-            completed: {
-                type: Boolean,
-                required: false,
-            },
-            createdAt: {
-                type: Date,
-                default: Date.now,
-                get: (timestamp) => dateFormat(timestamp),
-              },
-        },
-    ],
+    steps: [{ type: Schema.Types.ObjectId, ref: 'Step' }],
+   // substeps: [{ type: Schema.Types.ObjectId, ref: 'Substep' }],
+    //     {
+    //         stepText: {
+    //             type: String,
+    //             required: true,
+    //             minlength: 1,
+    //             maxlength: 800, 
+    //         },
+    //         completed: {
+    //             type: Boolean,
+    //             required: false,
+    //         },
+    //         createdAt: {
+    //             type: Date,
+    //             default: Date.now,
+    //             get: (timestamp) => dateFormat(timestamp),
+    //           },
+    //           substeps:[
+    //             {
+                          
+    //            ssText:{
+    //             type: String,
+    //             required: true,
+    //             minlength: 1,
+    //             maxlength: 800, 
+    //             },
+            
+    //             Completed:{
+    //             type: Boolean,
+    //             required: false,
+    //             },
+    //             createdAt: {
+    //                 type: Date,
+    //                 default: Date.now,
+    //                 get: (timestamp) => dateFormat(timestamp),
+    //               },
+    //         }
+    //           ]
+    //         },
+    // ],
     createdAt: {
         type: Date,
         default: Date.now,

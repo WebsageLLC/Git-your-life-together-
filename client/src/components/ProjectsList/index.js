@@ -187,10 +187,10 @@ const ProjectsList = ({
                     <p>No projects to display</p>
 
                   ) : (
-                    <div className="py-3 px-5 border border-primary rounded-pill shadow-lg">
+                    <div className={project.completed ? "row completed py-3 px-5 border border-primary rounded-pill shadow-lg" : "row notCompleted py-3 px-5 border border-primary rounded-pill shadow-lg"}>
                       <Link to="/steps" className="" state={{ projectId: project, steps: project.steps }} style={{ textDecoration: 'none', color: 'black' }}>
 
-                        <span className={project.completed ? "row completed" : "row notCompleted"} style={{ fontSize: '1rem' }}>
+                        <span style={{ fontSize: '1rem' }}>
                           <h5 className='col-8'>{project.title}</h5>
                           <p className='mb-1'> {project.description}</p>
                         </span>
